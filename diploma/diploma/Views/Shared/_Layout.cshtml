@@ -11,15 +11,15 @@
     <div class="wrapper">
         <div class="sidebar">
             <a href="#" class="menu-btn">
-                    <span></span>
+                <span></span>
             </a>
-            
+
             <div class="menu">
                 <div class="menu-header">
-                <p>MyDiploma</p>
-                <a href="#" class="close-menu-btn">
-                    <span></span>
-                </a>
+                    <p>MyDiploma</p>
+                    <a href="#" class="close-menu-btn">
+                        <span></span>
+                    </a>
                 </div>
                 <hr>
                 <ul class="menu-list">
@@ -35,19 +35,51 @@
                     <li class="menu-list-item">
                         <a href="#" class=""><span></span>Задача Комі-Вояжера</a>
                     </li>
-                    
+
                 </ul>
             </div>
 
             <div id="overlay" class="overlay"></div>
         </div>
-        
         <form action="" class="search-box">
-            <input placeholder="Search place" type="text" id="searchInput" class="search-box-input adress" alt="input adress">
-            <button class="search-box-btn">
-                <img src="img\icons8-поиск.svg" alt="search--v1"/>
-            </button>
+            <div class="search-input-and-btn">
+                <input placeholder="Search place" type="text" id="searchInput" class="search-box-input adress"autocomplete="off">
+                <button class="search-box-btn">
+                    <img src="img\icons8-поиск.svg" alt="search--v1" />
+                </button>
+            </div>
+
+            <ul id="suggestions" class="suggestions">
+                <li>Вводьте адресу а я вам допоможу)))</li>
+            </ul>
         </form>
+        
+        <div class="route-builder">
+            <div class="search-input-and-btn">
+                <input placeholder="Search place" type="text" id="searchInput" class="search-box-input adress"autocomplete="off">
+                <button class="search-box-btn">
+                    <img src="img\icons8-поиск.svg" alt="search--v1" />
+                </button>
+            </div>
+
+             <div class="search-input-and-btn">
+                <input placeholder="Search place" type="text" id="searchInput" class="search-box-input adress"autocomplete="off">
+                <button class="search-box-btn">
+                    <img src="img\icons8-поиск.svg" alt="search--v1" />
+                </button>
+            </div>
+
+             <div class="search-input-and-btn">
+                <input placeholder="Search place" type="text" id="searchInput" class="search-box-input adress"autocomplete="off">
+                <button class="search-box-btn">
+                    <img src="img\icons8-поиск.svg" alt="search--v1" />
+                </button>
+            </div>
+
+
+        </div>
+
+
 
         <div class="main">
             @RenderBody()
@@ -64,6 +96,8 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/mapsManager.js" asp-append-version="true"></script>
+
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdNqLjq5sBbA9n2dAJNFcLsKdhw50zerw&libraries=places&callback=initMap"></script>
 
     @await RenderSectionAsync("Scripts", required: false)

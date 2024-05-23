@@ -41,7 +41,8 @@ body, html {
     height: 100%; /* Занимает всю высоту видимой части экрана */
     overflow-x: hidden;
 }
-.sidebar{
+
+.sidebar {
     position: absolute;
     width: 71px;
     height: 100%;
@@ -53,7 +54,6 @@ body, html {
 }
 
 .overlay {
-
     position: fixed;
     z-index: 75;
     width: 100%;
@@ -66,24 +66,25 @@ body, html {
     transition: visibility 0.5s, opacity 0.5s ease-in-out;
 }
 
-.overlay-active{
+.overlay-active {
     visibility: visible;
     opacity: 1;
     transition: visible 0.5, opacity 0.5s ease-in;
 }
 
-.menu-header{
+.menu-header {
     padding: 10px;
     padding-left: 15px;
     display: flex;
     justify-content: left;
 }
 
-.menu-header p{
-    color: var(--text-color);
-    font-size: 14px;
-    font-weight: 400;
-}
+    .menu-header p {
+        color: var(--text-color);
+        font-size: 14px;
+        font-weight: 400;
+    }
+
 .menu {
     position: fixed;
     z-index: 99;
@@ -96,13 +97,11 @@ body, html {
     background-color: var(--bg-color);
     transition: .5s;
     transform: translateX(-100%);
-
 }
 
 .menu-active {
     transform: translateX(0%);
     box-shadow: 0px 0px 5px rgba(51, 51, 51, 0.5);
-
 }
 
 
@@ -111,42 +110,38 @@ body, html {
     list-style: none;
     padding: 0;
     margin: 25px;
-    
 }
 
-.menu-list-item{
-        padding-bottom: 15px;
+.menu-list-item {
+    padding-bottom: 15px;
 }
 
 
     .menu-list-item a {
-    display: flex; 
-    align-items: center; 
+        display: flex;
+        align-items: center;
         text-decoration: none;
         font-size: 14px;
         font-weight: 400;
         color: var(--accent-color);
-
     }
 
-    .menu-list-item a span {
-        margin-right: 20px; 
-        display: inline-block; 
-        width: 10px;
-        height: 10px;
-        background-color: var(--accent-color);
-        
-    }
+        .menu-list-item a span {
+            margin-right: 20px;
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background-color: var(--accent-color);
+        }
 
-    .menu .close-menu-btn{
-        display: block;
-        width: 50px;
-        height: 50px;
-        position: absolute;
-        right: 10px;
-        top: 0px;
-       
-    }
+.menu .close-menu-btn {
+    display: block;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    right: 10px;
+    top: 0px;
+}
 
     .menu .close-menu-btn span,
     .menu .close-menu-btn span::before,
@@ -178,12 +173,12 @@ body, html {
             transform: rotate(-45deg);
         }
 
-        .menu .close-menu-btn span {
-            height: 0px;
-        }
-    
-    
-    .sidebar .menu-btn {
+    .menu .close-menu-btn span {
+        height: 0px;
+    }
+
+
+.sidebar .menu-btn {
     display: block;
     width: 50px;
     height: 50px;
@@ -228,43 +223,81 @@ body, html {
     height: 100%;
 }
 
-
-.search-box{
+.search-box {
     position: absolute;
     z-index: 50;
     left: 90px;
     top: 10px;
     width: 375px;
+    height: 420px;
+    display: flex;
+    flex-direction: column;
+}
+
+.search-input-and-btn {
+    width: 100%;
     height: 48px;
     padding: 10px 10px 10px 20px;
-    
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-radius: 42px;
-    /* border: 0.862px solid rgba(225, 225, 225, 0.15); */
     background-color: var(--bg-color);
     box-shadow: 0px 0px 5px rgba(51, 51, 51, 0.5);
-    transition: 5s;
+}
+
+.suggestions {
+    /* display: none; */
+    list-style-type: none;
+    align-items: center;
+    padding: 0;
+    transform: translateX(-110%);
+    padding-top: 5px;
+    margin-top: 15px;
+    width: 100%;
+    height: 275px; 
+    background-color: var(--bg-color);
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px rgba(51, 51, 51, 0.5);
+    z-index: 50;
+    overflow: hidden;
+    transition: 0.5s;
+}
+
+.suggestions-active{
+    transform: translateX(0);
+}
+
+.suggestions li{
+    padding-bottom: 8px;
+    padding-top: 8px;
+    padding-left: 20px;
+    padding-right: 10px;
+}
+
+.suggestions li:hover{
+    background-color: #00000019;
+    transition: 0.5s;
 }
 
 
-.search-box-input{
+
+.search-box-input {
+    position: relative;
     width: 90%;
     border: none;
-    outline:none;
-   color: #000000;
-   font-size: 14px;
-   font-weight: 400;
-   line-height: 10%;
-
+    outline: none;
+    color: #000000;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 10%;
 }
 
-.search-box-input::placeholder{
-    color: var(--text-color);
-}
+    .search-box-input::placeholder {
+        color: var(--text-color);
+    }
 
-.search-box-btn{
+.search-box-btn {
     border: none;
     background-color: transparent;
     padding-right: 10px;
@@ -272,9 +305,23 @@ body, html {
     fill: var(--text-color);
 }
 
-.search-box-btn img{
-    position: relative;
-    max-height: 20px;
-    fill: var(--text-color);
-    color: var(--text-color);
+    .search-box-btn img {
+        position: relative;
+        max-height: 20px;
+        fill: var(--text-color);
+        color: var(--text-color);
+    }
+
+
+.route-builder{
+    position: absolute;
+    z-index: 50;
+    left: 90px;
+    top: 500px;
+    width: 375px;
+    height: 420px;
+    display: flex;
+    flex-direction: column;
+
+    background-color: var(--text-color);
 }
