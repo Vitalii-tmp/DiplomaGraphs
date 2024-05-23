@@ -1,12 +1,139 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{0811B6CB-85C8-4486-9D87-24199211BBFF}|diploma\\diploma.csproj|c:\\users\\vital\\documents\\github\\diplomagraphs\\diploma\\diploma\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0811B6CB-85C8-4486-9D87-24199211BBFF}|diploma\\diploma.csproj|solutionrelative:diploma\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0811B6CB-85C8-4486-9D87-24199211BBFF}|diploma\\diploma.csproj|c:\\users\\vital\\documents\\github\\diplomagraphs\\diploma\\diploma\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0811B6CB-85C8-4486-9D87-24199211BBFF}|diploma\\diploma.csproj|solutionrelative:diploma\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0811B6CB-85C8-4486-9D87-24199211BBFF}|diploma\\diploma.csproj|c:\\users\\vital\\documents\\github\\diplomagraphs\\diploma\\diploma\\views\\shared\\_validationscriptspartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0811B6CB-85C8-4486-9D87-24199211BBFF}|diploma\\diploma.csproj|solutionrelative:diploma\\views\\shared\\_validationscriptspartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0811B6CB-85C8-4486-9D87-24199211BBFF}|diploma\\diploma.csproj|c:\\users\\vital\\documents\\github\\diplomagraphs\\diploma\\diploma\\views\\shared\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0811B6CB-85C8-4486-9D87-24199211BBFF}|diploma\\diploma.csproj|solutionrelative:diploma\\views\\shared\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0811B6CB-85C8-4486-9D87-24199211BBFF}|diploma\\diploma.csproj|c:\\users\\vital\\documents\\github\\diplomagraphs\\diploma\\diploma\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0811B6CB-85C8-4486-9D87-24199211BBFF}|diploma\\diploma.csproj|solutionrelative:diploma\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0811B6CB-85C8-4486-9D87-24199211BBFF}|diploma\\diploma.csproj|c:\\users\\vital\\documents\\github\\diplomagraphs\\diploma\\diploma\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{0811B6CB-85C8-4486-9D87-24199211BBFF}|diploma\\diploma.csproj|solutionrelative:diploma\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0811B6CB-85C8-4486-9D87-24199211BBFF}|diploma\\diploma.csproj|c:\\users\\vital\\documents\\github\\diplomagraphs\\diploma\\diploma\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{0811B6CB-85C8-4486-9D87-24199211BBFF}|diploma\\diploma.csproj|solutionrelative:diploma\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "site.css",
+              "DocumentMoniker": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\wwwroot\\css\\site.css",
+              "RelativeDocumentMoniker": "diploma\\wwwroot\\css\\site.css",
+              "ToolTip": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\wwwroot\\css\\site.css",
+              "RelativeToolTip": "diploma\\wwwroot\\css\\site.css",
+              "ViewState": "AQIAAJsAAAAAAAAAAAAAAKEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-05-20T13:29:18.064Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "diploma\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "diploma\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAABEAAAAxAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-18T21:23:57.5Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Error.cshtml",
+              "DocumentMoniker": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\Views\\Shared\\Error.cshtml",
+              "RelativeDocumentMoniker": "diploma\\Views\\Shared\\Error.cshtml",
+              "ToolTip": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\Views\\Shared\\Error.cshtml",
+              "RelativeToolTip": "diploma\\Views\\Shared\\Error.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-18T21:23:55.1Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "_ValidationScriptsPartial.cshtml",
+              "DocumentMoniker": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "RelativeDocumentMoniker": "diploma\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "ToolTip": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "RelativeToolTip": "diploma\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-18T21:23:53.6Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Privacy.cshtml",
+              "DocumentMoniker": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\Views\\Home\\Privacy.cshtml",
+              "RelativeDocumentMoniker": "diploma\\Views\\Home\\Privacy.cshtml",
+              "ToolTip": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\Views\\Home\\Privacy.cshtml",
+              "RelativeToolTip": "diploma\\Views\\Home\\Privacy.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-18T21:23:42.307Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "diploma\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "diploma\\Views\\Home\\Index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-18T21:23:33.729Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "site.js",
+              "DocumentMoniker": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\wwwroot\\js\\site.js",
+              "RelativeDocumentMoniker": "diploma\\wwwroot\\js\\site.js",
+              "ToolTip": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\wwwroot\\js\\site.js",
+              "RelativeToolTip": "diploma\\wwwroot\\js\\site.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-05-21T09:39:09.882Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }
