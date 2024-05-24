@@ -246,7 +246,7 @@ body, html {
     box-shadow: 0px 0px 5px rgba(51, 51, 51, 0.5);
 }
 
-.suggestions {
+.search-box .suggestions {
     /* display: none; */
     list-style-type: none;
     align-items: center;
@@ -316,12 +316,78 @@ body, html {
 .route-builder{
     position: absolute;
     z-index: 50;
-    left: 90px;
-    top: 500px;
-    width: 375px;
-    height: 420px;
+    left: 71px;
+    top: 0px;
+    width: 400px;
+    height: 100%;
     display: flex;
     flex-direction: column;
+    padding: 20px;
+    text-align: center;
+    background-color: var(--bg-color);
+    transform: translateX(-100%);
+    transition: 0.5s;
+}
 
+.route-builder-active{
+    transform: translateX(0%);
+}
+
+.route-builder-close-btn{
+border: none;
+background-color: var(--bg-color);
+}
+
+.route-builder-item {
+    width: 100%;
+    margin: 9px 0px 9px 0px;
+    height: 38px;
+    display: flex;
+  justify-content: space-between;
+}
+.route-builder-item .input-block{
+    width: 280px;
+    padding: 0px 20px 0px 10px;
+    border: 1px solid var(--text-color);
+    border-radius: 5px;
+    
+}
+
+.route-builder-item span{
+    width: 28px;
+    height: 100%;
     background-color: var(--text-color);
+    text-align: center;
+    margin-right: 5px;
+}
+.route-builder-item .input-block input{
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    color: #000000;
+    font-size: 14px;
+    font-weight: 400;
+    
+}
+
+.delete-point-btn{
+    border: none;
+    width: 28px;
+    height: 100%;
+    background-color: var(--bg-color);
+}
+
+.add-route-point-btn{
+    border: none;
+    height: 38px;
+    width: 100%;
+
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 9px 0px 9px 0px;
+    padding: 0px 20px 0px 10px;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 600;
 }

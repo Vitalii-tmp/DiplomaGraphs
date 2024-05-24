@@ -25,9 +25,16 @@ app.MapControllerRoute(
     pattern: "Coordinates/Save",
     defaults: new { controller = "Coordinates", action = "Save" }
 );
-
+app.MapControllerRoute(
+    name: "SaveCoordinates",
+    pattern: "Coordinates/SaveAddresses",
+    defaults: new { controller = "Coordinates", action = "SaveAddresses" }
+);
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapControllers();
+
 
 app.Run();

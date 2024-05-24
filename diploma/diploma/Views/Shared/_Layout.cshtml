@@ -27,7 +27,7 @@
                         <a href="#" class=""><span></span>Алгоритм Дейкстри</a>
                     </li>
                     <li class="menu-list-item">
-                        <a href="#" class=""><span></span>Алгоритм А*</a>
+                        <a href="#" class=""><span></span>Алгоритм   А*</a>
                     </li>
                     <li class="menu-list-item">
                         <a href="#" class=""><span></span>Алгоритм Беллмана-Форда</a>
@@ -43,7 +43,7 @@
         </div>
         <form action="" class="search-box">
             <div class="search-input-and-btn">
-                <input placeholder="Search place" type="text" id="searchInput" class="search-box-input adress"autocomplete="off">
+                <input placeholder="Search place" type="text" id="searchInput" class="search-box-input adress" autocomplete="off">
                 <button class="search-box-btn">
                     <img src="img\icons8-поиск.svg" alt="search--v1" />
                 </button>
@@ -53,31 +53,31 @@
                 <li>Вводьте адресу а я вам допоможу)))</li>
             </ul>
         </form>
-        
-        <div class="route-builder">
-            <div class="search-input-and-btn">
-                <input placeholder="Search place" type="text" id="searchInput" class="search-box-input adress"autocomplete="off">
-                <button class="search-box-btn">
-                    <img src="img\icons8-поиск.svg" alt="search--v1" />
-                </button>
+
+        <form action="" class="route-builder">
+            <button class="route-builder-close-btn">close</button>
+
+            <div class="route-builder-items-container">
+                <div class="route-builder-item">
+                    <span>...</span>
+                    <div class="input-block">
+                        <input type="text" placeholder="Search place">
+                    </div>
+
+                    <button class="delete-point-btn">del</button>
+                </div>
+                <div class="route-builder-item">
+                    <span>...</span>
+                    <div class="input-block">
+                        <input type="text" placeholder="Search place">
+                    </div>
+
+                    <button class="delete-point-btn">del</button>
+                </div>
             </div>
-
-             <div class="search-input-and-btn">
-                <input placeholder="Search place" type="text" id="searchInput" class="search-box-input adress"autocomplete="off">
-                <button class="search-box-btn">
-                    <img src="img\icons8-поиск.svg" alt="search--v1" />
-                </button>
-            </div>
-
-             <div class="search-input-and-btn">
-                <input placeholder="Search place" type="text" id="searchInput" class="search-box-input adress"autocomplete="off">
-                <button class="search-box-btn">
-                    <img src="img\icons8-поиск.svg" alt="search--v1" />
-                </button>
-            </div>
-
-
-        </div>
+            <button class="add-route-point-btn">Add one more point</button>
+            <button type="button" class="build-route-btn">Побудувати маршрут</button>
+        </form>
 
 
 

@@ -112,6 +112,8 @@ function searchPlace() {
             }
         });
     }
+
+    $('.route-builder').toggleClass('route-builder-active');
 }
 
 $(document).ready(function () {
@@ -127,6 +129,7 @@ $(document).ready(function () {
     $('.search-box-btn').click(function (e) {
         e.preventDefault();
         searchPlace();
+        
     });
 });
 
