@@ -3,6 +3,7 @@
     --bg-color: #fff;
     --text-color: #84888C;
     --accent-color: #000000;
+    --accent-color2: #9ac0fd;
 }
 
 /* GENERAL RULES */
@@ -267,12 +268,18 @@ body, html {
 .rb-suggestions{
     display: none;
     list-style-type: none;
+    align-items: center;
+    padding: 0;
+    margin-top: 15px;
+
+
 }
 .rb-suggestions li {
     padding-bottom: 8px;
     padding-top: 8px;
     padding-left: 20px;
     padding-right: 10px;
+    text-align: left;
 }
 .rb-suggestions li:hover {
     background-color: #00000019;
@@ -352,10 +359,18 @@ body, html {
 }
 
 .route-builder-close-btn {
-    border: none;
     background-color: var(--bg-color);
+    color: var(--accent-color);
+    border: 1px solid var(--text-color);
+    border-radius: 5px;
 }
 
+.build-route-btn {
+    background-color: var(--bg-color);
+    color: var(--accent-color);
+    border: 1px solid var(--text-color);
+    border-radius: 5px;
+}
 .route-builder-item {
     width: 100%;
     margin: 9px 0px 9px 0px;
@@ -370,13 +385,30 @@ body, html {
         border: 1px solid var(--text-color);
         border-radius: 5px;
     }
+    
+    .route-builder-item .input-block:hover{
+        border-color: var(--accent-color);
+    }
 
-    .route-builder-item span {
+    .route-builder-item .input-block:focus-within{
+        border: 3px solid var(--accent-color2) ;
+    }
+
+    .route-builder-item span{
         width: 28px;
         height: 100%;
-        background-color: var(--text-color);
-        text-align: center;
         margin-right: 5px;
+    
+    }
+
+    .route-builder-item i{
+        display: flex; 
+        justify-content: center; 
+        align-items: center;
+        font-size: 20px; 
+        color: var(--text-color); 
+       
+    
     }
 
     .route-builder-item .input-block input {

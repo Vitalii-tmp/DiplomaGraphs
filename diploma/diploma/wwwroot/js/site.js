@@ -53,11 +53,11 @@ $('.add-route-point-btn').click(function (e) {
         const newItem = document.createElement('div');
         newItem.className = 'route-builder-item';
         newItem.innerHTML = `
-            <span>...</span>
+          <i class="fa-solid fa-map-pin"></i>
             <div class="input-block">
                 <input type="text" placeholder="Search place" class="search-input">
             </div>
-            <button class="delete-point-btn">del</button>
+            <button class="delete-point-btn"><i class="fa-regular fa-circle-xmark"></i></button>
         `;
         container.appendChild(newItem);
         // Ініціалізація автозаповнення для новододаного інпуту
