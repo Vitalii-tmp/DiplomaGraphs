@@ -19,14 +19,28 @@ $('.overlay').click(function () {
 
 $('#searchInput').on('focus', function() {
     console.log('Input is focused');
-    $('.suggestions').toggleClass('suggestions-active'); // Показываем список при фокусе, если есть подсказки
+    $('.sb-suggestions').toggleClass('sb-suggestions-active'); // Показываем список при фокусе, если есть подсказки
 });
 
 $('#searchInput').on('blur', function() {
     setTimeout(function() {
-        $('.suggestions').toggleClass('suggestions-active'); // Скрываем список при потере фокуса
+        $('.sb-suggestions').toggleClass('sb-suggestions-active'); // Скрываем список при потере фокуса
     }, 200);
 });
+
+$(document).on('focus', '.search-input', function() {
+    console.log('Input is focused');
+    $('.rb-suggestions').toggleClass('rb-suggestions-active'); // Показываем список при фокусе, если есть подсказки
+});
+
+$(document).on('blur', '.search-input', function() {
+    console.log('Input is blurred');
+    var $rbSuggestions = $(this).next('.rb-suggestions');
+    setTimeout(function() {
+      $('.rb-suggestions').toggleClass('rb-suggestions-active'); // Скрываем список при потере фокуса
+    }, 200);
+});
+
 
 
 $('.add-route-point-btn').click(function (e) {
@@ -35,19 +49,31 @@ $('.add-route-point-btn').click(function (e) {
 
     // Ограничиваем добавление до 10 элементов
     if (itemCount < 10) {
-      // Клонируем последний элемент route-builder-item
-      const newRouteItem = $('.route-builder-item').last().clone();
+      const container = document.querySelector('.route-builder-items-container');
+        const newItem = document.createElement('div');
+        newItem.className = 'route-builder-item';
+        newItem.innerHTML = `
+            <span>...</span>
+            <div class="input-block">
+                <input type="text" placeholder="Search place" class="search-input">
+            </div>
+            <button class="delete-point-btn">del</button>
+        `;
+        container.appendChild(newItem);
+        // Ініціалізація автозаповнення для новододаного інпуту
+        rb_autocompleteInit(newItem.querySelector('.search-input'));
 
-      // Очищаем введенные данные в клонированном элементе
-      newRouteItem.find('input').val('');
-
-      // Добавляем новый элемент внутрь контейнера
-      $('.route-builder-items-container').append(newRouteItem);
     } else {
       alert('Вы можете добавить не более 10 пунктов.');
     }
-
 });
+
+// Обробник для видалення полів вводу
+$('.route-builder-items-container').on('click', '.delete-point-btn', function(e) {
+  e.preventDefault();
+  $(this).closest('.route-builder-item').remove();
+});
+
 
 $('.build-route-btn').click(function() {
     // Собираем все значения из инпутов

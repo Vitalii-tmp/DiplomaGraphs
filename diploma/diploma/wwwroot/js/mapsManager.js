@@ -1,66 +1,136 @@
 let map;
 let markers = [];
 
+// Ініціалізація карти
 function initMap() {
-    // Создание карты, центрированной на заданных координатах (Сидней, Австралия)
+    // Створення карти, центрованої на заданих координатах (Сідней, Австралія)
     map = new google.maps.Map(document.getElementById('map'), {
         center: { lat: -33.8688, lng: 151.2195 },
         zoom: 13
     });
 
+    // Ініціалізація автозаповнення для всіх існуючих полів
+    document.querySelectorAll('.search-input').forEach(function(input) {
+        rb_autocompleteInit(input);
+    });
+
+    // Обробник для додавання нових полів вводу
+    // document.querySelector('.add-route-point-btn').addEventListener('click', function(e) {
+    //     e.preventDefault();
+    //     const container = document.querySelector('.route-builder-items-container');
+    //     const newItem = document.createElement('div');
+    //     newItem.className = 'route-builder-item';
+    //     newItem.innerHTML = `
+    //         <span>...</span>
+    //         <div class="input-block">
+    //             <input type="text" placeholder="Search place" class="search-input">
+    //         </div>
+    //         <button class="delete-point-btn">del</button>
+    //     `;
+    //     container.appendChild(newItem);
+    //     // Ініціалізація автозаповнення для новододаного інпуту
+    //     rb_autocompleteInit(newItem.querySelector('.search-input'));
+    // });
+
+    // // Обробник для видалення полів вводу
+    // document.querySelector('.route-builder-items-container').addEventListener('click', function(e) {
+    //     if (e.target.classList.contains('delete-point-btn')) {
+    //         e.preventDefault();
+    //         e.target.closest('.route-builder-item').remove();
+    //     }
+    // });
+
     autocompleteInit();
 }
 
-function autocompleteInit(){
+// Функція автозаповнення для стандартного поля
+function autocompleteInit() {
     var autocompleteService = new google.maps.places.AutocompleteService();
     var input = document.getElementById('searchInput');
-    var suggestionsList = document.getElementById('suggestions');
+    var suggestionsList = document.getElementById('sb-suggestions');
 
     input.addEventListener('input', function() {
         var query = input.value;
         
+        // Виклик автозаповнення
         autocompleteService.getPlacePredictions({ input: query, types: ['geocode', 'establishment'] }, function(predictions, status) {
             if (status === google.maps.places.PlacesServiceStatus.OK) {
-                // Очищаем предыдущие подсказки
+                // Очищення попередніх підказок
                 suggestionsList.innerHTML = '';
 
-                // Создаем элементы списка и добавляем их в блок под инпутом
+                // Створення нових підказок і додавання їх до списку
                 predictions.forEach(function(prediction) {
                     var listItem = document.createElement('li');
                     listItem.textContent = prediction.description;
                     suggestionsList.appendChild(listItem);
 
-                    // Добавляем обработчик клика на каждый элемент списка
+                    // Обробник кліка для вибору підказки
                     listItem.addEventListener('click', function() {
                         input.value = prediction.description;
-                        searchPlace();
-                        // Очищаем список подсказок после выбора места
-                        // suggestionsList.innerHTML = '';
+                        searchPlace(input.value);
+                        $('.route-builder').toggleClass('route-builder-active');
+
                     });
                 });
             } else {
-                while (suggestionsList.firstChild) {
-                suggestionsList.removeChild(suggestionsList.firstChild);
-                }
+                // Якщо немає підказок, відображаємо повідомлення
+                suggestionsList.innerHTML = '';
                 var notFoundItem = document.createElement('li');
-                notFoundItem.textContent = "Не найдено";
+                notFoundItem.textContent = "Не знайдено";
                 suggestionsList.appendChild(notFoundItem);
-                console.error('Ошибка при получении предложений автозаполнения:', status);
             }
         });
     });
 }
 
+// Функція автозаповнення для динамічних полів
+function rb_autocompleteInit(input) {
+    var autocompleteService = new google.maps.places.AutocompleteService();
+    var suggestionsList = document.querySelector('.rb-suggestions');
 
-function searchPlace() {
-    const input = $('.search-box-input').val();
+    input.addEventListener('input', function() {
+        var query = input.value;
+
+        // Виклик автозаповнення
+        autocompleteService.getPlacePredictions({ input: query, types: ['geocode', 'establishment'] }, function(predictions, status) {
+            if (status === google.maps.places.PlacesServiceStatus.OK) {
+                // Очищення попередніх підказок
+                suggestionsList.innerHTML = '';
+
+                // Створення нових підказок і додавання їх до списку
+                predictions.forEach(function(prediction) {
+                    var listItem = document.createElement('li');
+                    listItem.textContent = prediction.description;
+                    suggestionsList.appendChild(listItem);
+
+                    // Обробник кліка для вибору підказки
+                    listItem.addEventListener('click', function() {
+                        input.value = prediction.description;
+                        searchPlace(input.value);
+                        suggestionsList.innerHTML = '';
+                    });
+                });
+            } else {
+                // Якщо немає підказок, відображаємо повідомлення
+                suggestionsList.innerHTML = '';
+                var notFoundItem = document.createElement('li');
+                notFoundItem.textContent = "Не знайдено";
+                suggestionsList.appendChild(notFoundItem);
+            }
+        });
+    });
+}
+
+// Функція пошуку місця
+function searchPlace(address) {
+    const input = address;
     const service = new google.maps.places.PlacesService(map);
 
-    // Очистка старых маркеров
+    // Очистка старих маркерів
     markers.forEach(marker => marker.setMap(null));
     markers = [];
 
-    // Если ввод в формате координат
+    // Перевірка, чи введено координати
     const coordinatePattern = /^-?\d+(\.\d+)?,-?\d+(\.\d+)?$/;
     if (coordinatePattern.test(input)) {
         const coords = input.split(',');
@@ -72,16 +142,16 @@ function searchPlace() {
         });
         markers.push(marker);
         map.setCenter(latLng);
-        map.setZoom(15); // Устанавливаем масштаб для координат
+        map.setZoom(15);
     } else {
-        // Поиск по текстовому запросу
+        // Пошук по текстовому запиту
         service.textSearch({ query: input }, (results, status) => {
             if (status === google.maps.places.PlacesServiceStatus.OK) {
                 if (results.length == 0) {
                     return;
                 }
 
-                // Для каждого найденного места создаем маркер на карте
+                // Створення маркерів для знайдених місць
                 const bounds = new google.maps.LatLngBounds();
                 results.forEach(place => {
                     if (!place.geometry) {
@@ -89,17 +159,15 @@ function searchPlace() {
                         return;
                     }
 
-                    // Создание маркера для места
                     const marker = new google.maps.Marker({
                         map,
                         position: place.geometry.location,
                         title: place.name
                     });
-                    //ОТПРАВКА AJAX
                     saveCoordinates(1,1);
                     markers.push(marker);
 
-                    // Расширение границ карты до включения местоположения
+                    // Розширення меж карти для відображення всіх маркерів
                     if (place.geometry.viewport) {
                         bounds.union(place.geometry.viewport);
                     } else {
@@ -113,46 +181,51 @@ function searchPlace() {
         });
     }
 
-    $('.route-builder').toggleClass('route-builder-active');
 }
 
 $(document).ready(function () {
-    // Обработчик события keydown для поля ввода
+    // Обробник події keydown для стандартного поля вводу
     $('.search-box-input').keydown(function (event) {
         if (event.key === 'Enter') {
-            event.preventDefault(); // предотвратить стандартное поведение формы при нажатии Enter
-            searchPlace();
+            event.preventDefault();
+            var inputValue = $('#searchInput').val(); // Отримання значення поля вводу
+            searchPlace(inputValue);
+            $('.route-builder').toggleClass('route-builder-active');
         }
     });
 
-    // Обработчик события click для кнопки поиска
+    // Обробник події click для кнопки пошуку
     $('.search-box-btn').click(function (e) {
         e.preventDefault();
-        searchPlace();
-        
+        var inputValue = $('#searchInput').val(); // Отримання значення поля вводу
+        searchPlace(inputValue);
+        $('.route-builder').toggleClass('route-builder-active');
     });
 });
 
+$(document).on('keydown', '.search-input', function(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+        var inputValue = $(this).val(); // Отримання значення поточного поля вводу
+        searchPlace(inputValue);
+    }
+});
 
-
+// Функція для збереження координат
 function saveCoordinates(latitude, longitude) {
     $.ajax({
-        url: '/Coordinates/Save', // URL-адрес контроллера и действия на сервере, куда будет отправлен запрос
-        method: 'POST', // Метод HTTP-запроса (POST)
-        data: { latitude: latitude, longitude: longitude }, // Данные, которые будут отправлены на сервер (широта и долгота)
+        url: '/Coordinates/Save',
+        method: 'POST',
+        data: { latitude: latitude, longitude: longitude },
         success: function (response) {
-            // Обработка успешного ответа от сервера
             if (response.success) {
-                // Вывести сообщение пользователю об успешном сохранении координат
                 console.log(response.message);
             } else {
-                // Вывести сообщение об ошибке, если что-то пошло не так
-                alert('Ошибка при сохранении координат');
+                alert('Помилка при збереженні координат');
             }
         },
         error: function (xhr, status, error) {
-            // Обработка ошибки
-            console.error('Ошибка при сохранении координат:', error);
+            console.error('Помилка при збереженні координат:', error);
         }
     });
 }

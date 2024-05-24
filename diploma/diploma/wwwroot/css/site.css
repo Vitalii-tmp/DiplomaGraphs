@@ -246,7 +246,8 @@ body, html {
     box-shadow: 0px 0px 5px rgba(51, 51, 51, 0.5);
 }
 
-.search-box .suggestions {
+
+.sb-suggestions {
     /* display: none; */
     list-style-type: none;
     align-items: center;
@@ -255,7 +256,7 @@ body, html {
     padding-top: 5px;
     margin-top: 15px;
     width: 100%;
-    height: 275px; 
+    height: 275px;
     background-color: var(--bg-color);
     border-radius: 10px;
     box-shadow: 0px 0px 5px rgba(51, 51, 51, 0.5);
@@ -263,22 +264,38 @@ body, html {
     overflow: hidden;
     transition: 0.5s;
 }
-
-.suggestions-active{
+.rb-suggestions{
+    display: none;
+    list-style-type: none;
+}
+.rb-suggestions li {
+    padding-bottom: 8px;
+    padding-top: 8px;
+    padding-left: 20px;
+    padding-right: 10px;
+}
+.rb-suggestions li:hover {
+    background-color: #00000019;
+    transition: 0.5s;
+}
+.rb-suggestions-active{
+   display: block;
+}
+.sb-suggestions-active {
     transform: translateX(0);
 }
 
-.suggestions li{
+.sb-suggestions li {
     padding-bottom: 8px;
     padding-top: 8px;
     padding-left: 20px;
     padding-right: 10px;
 }
 
-.suggestions li:hover{
-    background-color: #00000019;
-    transition: 0.5s;
-}
+    .sb-suggestions li:hover {
+        background-color: #00000019;
+        transition: 0.5s;
+    }
 
 
 
@@ -313,7 +330,7 @@ body, html {
     }
 
 
-.route-builder{
+.route-builder {
     position: absolute;
     z-index: 50;
     left: 71px;
@@ -327,15 +344,16 @@ body, html {
     background-color: var(--bg-color);
     transform: translateX(-100%);
     transition: 0.5s;
+    overflow-y: hidden;
 }
 
-.route-builder-active{
+.route-builder-active {
     transform: translateX(0%);
 }
 
-.route-builder-close-btn{
-border: none;
-background-color: var(--bg-color);
+.route-builder-close-btn {
+    border: none;
+    background-color: var(--bg-color);
 }
 
 .route-builder-item {
@@ -343,46 +361,45 @@ background-color: var(--bg-color);
     margin: 9px 0px 9px 0px;
     height: 38px;
     display: flex;
-  justify-content: space-between;
-}
-.route-builder-item .input-block{
-    width: 280px;
-    padding: 0px 20px 0px 10px;
-    border: 1px solid var(--text-color);
-    border-radius: 5px;
-    
+    justify-content: space-between;
 }
 
-.route-builder-item span{
-    width: 28px;
-    height: 100%;
-    background-color: var(--text-color);
-    text-align: center;
-    margin-right: 5px;
-}
-.route-builder-item .input-block input{
-    width: 100%;
-    height: 100%;
-    border: none;
-    outline: none;
-    color: #000000;
-    font-size: 14px;
-    font-weight: 400;
-    
-}
+    .route-builder-item .input-block {
+        width: 280px;
+        padding: 0px 20px 0px 10px;
+        border: 1px solid var(--text-color);
+        border-radius: 5px;
+    }
 
-.delete-point-btn{
+    .route-builder-item span {
+        width: 28px;
+        height: 100%;
+        background-color: var(--text-color);
+        text-align: center;
+        margin-right: 5px;
+    }
+
+    .route-builder-item .input-block input {
+        width: 100%;
+        height: 100%;
+        border: none;
+        outline: none;
+        color: #000000;
+        font-size: 14px;
+        font-weight: 400;
+    }
+
+.delete-point-btn {
     border: none;
     width: 28px;
     height: 100%;
     background-color: var(--bg-color);
 }
 
-.add-route-point-btn{
+.add-route-point-btn {
     border: none;
     height: 38px;
     width: 100%;
-
     background-color: var(--bg-color);
     color: var(--text-color);
     margin: 9px 0px 9px 0px;
