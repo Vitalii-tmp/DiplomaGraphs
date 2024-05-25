@@ -14,79 +14,6 @@ function initMap() {
         rb_autocompleteInit(input);
     });
 
-    // Создание DirectionsService и DirectionsRenderer
-//   var directionsService = new google.maps.DirectionsService();
-//   var directionsRenderer = new google.maps.DirectionsRenderer({
-//     map: map
-//   });
-
-//   // Запрос маршрута
-//   var request = {
-//     origin: 'Chicago, IL', // Начальная точка
-//     destination: 'Los Angeles, CA', // Конечная точка
-//     travelMode: 'DRIVING' // Режим перемещения (DRIVING - автомобиль)
-//   };
-
-//   // Отправка запроса маршрута
-//   directionsService.route(request, function(result, status) {
-//     if (status == 'OK') {
-//       // Отображение маршрута на карте
-//       directionsRenderer.setDirections(result);
-//     }
-//   });
-
-    // Создание DirectionsService и DirectionsRenderer
-  var directionsService = new google.maps.DirectionsService();
-  var directionsRenderer = new google.maps.DirectionsRenderer({
-    map: map
-  });
-
-  // Запрос маршрута с тремя или четырьмя точками
-  var request = {
-    origin: 'Chicago, IL', // Начальная точка
-    destination: 'Los Angeles, CA', // Конечная точка
-    waypoints: [
-      {location: 'New York, NY'}, // Промежуточная точка 1
-      {location: 'Denver, CO'} // Промежуточная точка 2
-      // Для четырех точек добавьте еще одну промежуточную точку
-    ],
-    travelMode: 'DRIVING' // Режим перемещения (DRIVING - автомобиль)
-  };
-
-  // Отправка запроса маршрута
-  directionsService.route(request, function(result, status) {
-    if (status == 'OK') {
-      // Отображение маршрута на карте
-      directionsRenderer.setDirections(result);
-    }
-  });
-
-    // Обробник для додавання нових полів вводу
-    // document.querySelector('.add-route-point-btn').addEventListener('click', function(e) {
-    //     e.preventDefault();
-    //     const container = document.querySelector('.route-builder-items-container');
-    //     const newItem = document.createElement('div');
-    //     newItem.className = 'route-builder-item';
-    //     newItem.innerHTML = `
-    //         <span>...</span>
-    //         <div class="input-block">
-    //             <input type="text" placeholder="Search place" class="search-input">
-    //         </div>
-    //         <button class="delete-point-btn">del</button>
-    //     `;
-    //     container.appendChild(newItem);
-    //     // Ініціалізація автозаповнення для новододаного інпуту
-    //     rb_autocompleteInit(newItem.querySelector('.search-input'));
-    // });
-
-    // // Обробник для видалення полів вводу
-    // document.querySelector('.route-builder-items-container').addEventListener('click', function(e) {
-    //     if (e.target.classList.contains('delete-point-btn')) {
-    //         e.preventDefault();
-    //         e.target.closest('.route-builder-item').remove();
-    //     }
-    // });
-
     autocompleteInit();
 }
 
@@ -277,3 +204,39 @@ function saveCoordinates(latitude, longitude) {
         }
     });
 }
+
+
+function drawRoute(coords){
+
+    // Создание DirectionsService и DirectionsRenderer
+    var directionsService = new google.maps.DirectionsService();
+    var directionsRenderer = new google.maps.DirectionsRenderer({
+      map: map
+    });
+  
+    // Создание массива точек назначения
+    var waypoints = [];
+    for (var i = 0; i < coords.length; i++) {
+      waypoints.push({
+        location: new google.maps.LatLng(coords[i].lat, coords[i].lng),
+        stopover: true
+      });
+    }
+  
+    // Запрос маршрута с точками назначения
+    var request = {
+      origin: new google.maps.LatLng(coords[0].lat, coords[0].lng), // Начальная точка
+      destination: new google.maps.LatLng(coords[coords.length - 1].lat, coords[coords.length - 1].lng), // Конечная точка
+      waypoints: waypoints.slice(1, -1), // Промежуточные точки (отбрасываем начальную и конечную)
+      travelMode: 'DRIVING' // Режим перемещения (DRIVING - автомобиль)
+    };
+  
+    // Отправка запроса маршрута
+    directionsService.route(request, function(result, status) {
+      if (status == 'OK') {
+        // Отображение маршрута на карте
+        directionsRenderer.setDirections(result);
+      }
+    });
+  }
+  

@@ -43,11 +43,11 @@ namespace diploma.Controllers
             if (coordinatesList.Count >= 2)
             {
                 var distance = DistanceController.GetDistance(coordinatesList[0], coordinatesList[1]);
-                var roadDistance = await DistanceController.GetDistanceByRoadAsync(coordinatesList[0], coordinatesList[1]);
+                // var roadDistance = await DistanceController.GetDistanceByRoadAsync(coordinatesList[0], coordinatesList[1]);
                 Console.WriteLine($"Расстояние между первой и второй точками: {distance} км");
-                var fakeCoords = new CoordinatesModel { Latitude = distance, Longitude = roadDistance };
+                // var fakeCoords = new CoordinatesModel { Latitude = distance, Longitude = roadDistance };
                 
-                coordinatesList.Add(fakeCoords);
+                // coordinatesList.Add(fakeCoords);
             }
             
             return coordinatesList;

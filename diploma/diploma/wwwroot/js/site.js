@@ -87,26 +87,41 @@ $('.build-route-btn').click(function() {
     sendRouteData(routePoints);
   });
 
-function sendRouteData(routePoints) {
-    console.log(routePoints);
-    $.ajax({
-        
-      url: '/Coordinates/SaveAddresses', // Убедитесь, что URL корректный
-      method: 'POST',
-      contentType: 'application/json',
-      data: JSON.stringify(routePoints),
-      success: function(response) {
-        // Обработка успешного ответа от бэкенда
-        console.log('Маршрут успешно построен:', response);
-        alert('Маршрут успешно построен');
-      },
-      error: function(error) {
-        // Обработка ошибки
-        console.error('Ошибка при построении маршрута:', error);
-        alert('Ошибка при построении маршрута');
-      }
+// Преобразование списка координат в формат, подходящий для Google Maps API
+function convertCoordinates(coordinatesList) {
+  var formattedCoordinates = [];
+  for (var i = 0; i < coordinatesList.length; i++) {
+    formattedCoordinates.push({
+      lat: coordinatesList[i].latitude,
+      lng: coordinatesList[i].longitude
     });
   }
+  return formattedCoordinates;
+}
+
+// Функция для отправки списка координат на сервер и построения маршрута
+function sendRouteData(routePoints) {
+  console.log(routePoints);
+  $.ajax({
+    url: '/Coordinates/SaveAddresses', // Убедитесь, что URL корректный
+    method: 'POST',
+    contentType: 'application/json',
+    data: JSON.stringify(routePoints),
+    success: function(response) {
+      // Обработка успешного ответа от бэкенда
+      console.log('Маршрут успешно построен:', response);
+      alert('Маршрут успешно построен');
+
+      // Построение маршрута на карте
+      drawRoute(convertCoordinates(response));
+    },
+    error: function(error) {
+      // Обработка ошибки
+      console.error('Ошибка при построении маршрута:', error);
+      alert('Ошибка при построении маршрута');
+    }
+  });
+}
 
   $('.route-builder-close-btn').click(function (e) {
     e.preventDefault();
