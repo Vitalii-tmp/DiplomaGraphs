@@ -14,6 +14,53 @@ function initMap() {
         rb_autocompleteInit(input);
     });
 
+    // Создание DirectionsService и DirectionsRenderer
+//   var directionsService = new google.maps.DirectionsService();
+//   var directionsRenderer = new google.maps.DirectionsRenderer({
+//     map: map
+//   });
+
+//   // Запрос маршрута
+//   var request = {
+//     origin: 'Chicago, IL', // Начальная точка
+//     destination: 'Los Angeles, CA', // Конечная точка
+//     travelMode: 'DRIVING' // Режим перемещения (DRIVING - автомобиль)
+//   };
+
+//   // Отправка запроса маршрута
+//   directionsService.route(request, function(result, status) {
+//     if (status == 'OK') {
+//       // Отображение маршрута на карте
+//       directionsRenderer.setDirections(result);
+//     }
+//   });
+
+    // Создание DirectionsService и DirectionsRenderer
+  var directionsService = new google.maps.DirectionsService();
+  var directionsRenderer = new google.maps.DirectionsRenderer({
+    map: map
+  });
+
+  // Запрос маршрута с тремя или четырьмя точками
+  var request = {
+    origin: 'Chicago, IL', // Начальная точка
+    destination: 'Los Angeles, CA', // Конечная точка
+    waypoints: [
+      {location: 'New York, NY'}, // Промежуточная точка 1
+      {location: 'Denver, CO'} // Промежуточная точка 2
+      // Для четырех точек добавьте еще одну промежуточную точку
+    ],
+    travelMode: 'DRIVING' // Режим перемещения (DRIVING - автомобиль)
+  };
+
+  // Отправка запроса маршрута
+  directionsService.route(request, function(result, status) {
+    if (status == 'OK') {
+      // Отображение маршрута на карте
+      directionsRenderer.setDirections(result);
+    }
+  });
+
     // Обробник для додавання нових полів вводу
     // document.querySelector('.add-route-point-btn').addEventListener('click', function(e) {
     //     e.preventDefault();
@@ -69,7 +116,8 @@ function autocompleteInit() {
                         input.value = prediction.description;
                         searchPlace(input.value);
                         $('.route-builder').toggleClass('route-builder-active');
-
+                        var inputValue = $('#searchInput').val(); // Отримання значення поля вводу
+                         $('.route-builder .search-input:first').val(inputValue);
                     });
                 });
             } else {

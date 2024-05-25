@@ -7,16 +7,24 @@
       "RelativeMoniker": "D:0:0:{0811B6CB-85C8-4486-9D87-24199211BBFF}|diploma\\diploma.csproj|solutionrelative:diploma\\controllers\\coordinatescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0811B6CB-85C8-4486-9D87-24199211BBFF}|diploma\\diploma.csproj|c:\\users\\vital\\documents\\github\\diplomagraphs\\diploma\\diploma\\models\\coordinatesmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0811B6CB-85C8-4486-9D87-24199211BBFF}|diploma\\diploma.csproj|solutionrelative:diploma\\models\\coordinatesmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0811B6CB-85C8-4486-9D87-24199211BBFF}|diploma\\diploma.csproj|c:\\users\\vital\\documents\\github\\diplomagraphs\\diploma\\diploma\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0811B6CB-85C8-4486-9D87-24199211BBFF}|diploma\\diploma.csproj|solutionrelative:diploma\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0811B6CB-85C8-4486-9D87-24199211BBFF}|diploma\\diploma.csproj|c:\\users\\vital\\documents\\github\\diplomagraphs\\diploma\\diploma\\models\\googledistancematrixmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0811B6CB-85C8-4486-9D87-24199211BBFF}|diploma\\diploma.csproj|solutionrelative:diploma\\models\\googledistancematrixmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0811B6CB-85C8-4486-9D87-24199211BBFF}|diploma\\diploma.csproj|c:\\users\\vital\\documents\\github\\diplomagraphs\\diploma\\diploma\\controllers\\distancecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0811B6CB-85C8-4486-9D87-24199211BBFF}|diploma\\diploma.csproj|solutionrelative:diploma\\controllers\\distancecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0811B6CB-85C8-4486-9D87-24199211BBFF}|diploma\\diploma.csproj|c:\\users\\vital\\documents\\github\\diplomagraphs\\diploma\\diploma\\models\\addressmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0811B6CB-85C8-4486-9D87-24199211BBFF}|diploma\\diploma.csproj|solutionrelative:diploma\\models\\addressmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0811B6CB-85C8-4486-9D87-24199211BBFF}|diploma\\diploma.csproj|c:\\users\\vital\\documents\\github\\diplomagraphs\\diploma\\diploma\\models\\googledistancematrixmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0811B6CB-85C8-4486-9D87-24199211BBFF}|diploma\\diploma.csproj|solutionrelative:diploma\\models\\googledistancematrixmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0811B6CB-85C8-4486-9D87-24199211BBFF}|diploma\\diploma.csproj|c:\\users\\vital\\documents\\github\\diplomagraphs\\diploma\\diploma\\models\\coordinatesmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0811B6CB-85C8-4486-9D87-24199211BBFF}|diploma\\diploma.csproj|solutionrelative:diploma\\models\\coordinatesmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0811B6CB-85C8-4486-9D87-24199211BBFF}|diploma\\diploma.csproj|c:\\users\\vital\\documents\\github\\diplomagraphs\\diploma\\diploma\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
@@ -58,23 +66,50 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "diploma\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "diploma\\Controllers\\HomeController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-25T15:51:12.185Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "DistanceController.cs",
+              "DocumentMoniker": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\Controllers\\DistanceController.cs",
+              "RelativeDocumentMoniker": "diploma\\Controllers\\DistanceController.cs",
+              "ToolTip": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\Controllers\\DistanceController.cs",
+              "RelativeToolTip": "diploma\\Controllers\\DistanceController.cs",
+              "ViewState": "AQIAAB4AAAAAAAAAAAAYwBoAAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-25T15:50:19.763Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "GoogleDistanceMatrixModels.cs",
               "DocumentMoniker": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\Models\\GoogleDistanceMatrixModels.cs",
               "RelativeDocumentMoniker": "diploma\\Models\\GoogleDistanceMatrixModels.cs",
               "ToolTip": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\Models\\GoogleDistanceMatrixModels.cs",
               "RelativeToolTip": "diploma\\Models\\GoogleDistanceMatrixModels.cs",
-              "ViewState": "AQIAABEAAAAAAAAAAAAswAUAAAAFAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-25T09:39:38.875Z"
+              "WhenOpened": "2024-05-25T09:39:38.875Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "site.js",
               "DocumentMoniker": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\wwwroot\\js\\site.js",
               "RelativeDocumentMoniker": "diploma\\wwwroot\\js\\site.js",
@@ -86,7 +121,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "AddressModel.cs",
               "DocumentMoniker": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\Models\\AddressModel.cs",
               "RelativeDocumentMoniker": "diploma\\Models\\AddressModel.cs",
@@ -105,27 +140,27 @@
               "RelativeDocumentMoniker": "diploma\\Controllers\\CoordinatesController.cs",
               "ToolTip": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\Controllers\\CoordinatesController.cs",
               "RelativeToolTip": "diploma\\Controllers\\CoordinatesController.cs",
-              "ViewState": "AQIAACUAAAAAAAAAAAAuwDsAAAASAAAA",
+              "ViewState": "AQIAAB0AAAAAAAAAAAAYwCkAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-23T11:58:22.942Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "CoordinatesModel.cs",
               "DocumentMoniker": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\Models\\CoordinatesModel.cs",
               "RelativeDocumentMoniker": "diploma\\Models\\CoordinatesModel.cs",
               "ToolTip": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\Models\\CoordinatesModel.cs",
               "RelativeToolTip": "diploma\\Models\\CoordinatesModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAiAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAQAAAAsAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-23T11:57:15.539Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "site.css",
               "DocumentMoniker": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\wwwroot\\css\\site.css",
               "RelativeDocumentMoniker": "diploma\\wwwroot\\css\\site.css",
@@ -137,7 +172,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "diploma\\Views\\Shared\\_Layout.cshtml",
@@ -149,7 +184,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "Error.cshtml",
               "DocumentMoniker": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\Views\\Shared\\Error.cshtml",
               "RelativeDocumentMoniker": "diploma\\Views\\Shared\\Error.cshtml",
@@ -161,7 +196,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\Program.cs",
               "RelativeDocumentMoniker": "diploma\\Program.cs",
@@ -173,7 +208,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "_ValidationScriptsPartial.cshtml",
               "DocumentMoniker": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
               "RelativeDocumentMoniker": "diploma\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
@@ -185,7 +220,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "Privacy.cshtml",
               "DocumentMoniker": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\Views\\Home\\Privacy.cshtml",
               "RelativeDocumentMoniker": "diploma\\Views\\Home\\Privacy.cshtml",
@@ -197,7 +232,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 13,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "diploma\\Views\\Home\\Index.cshtml",

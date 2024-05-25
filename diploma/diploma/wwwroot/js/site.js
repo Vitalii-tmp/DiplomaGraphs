@@ -113,4 +113,22 @@ function sendRouteData(routePoints) {
     $('.route-builder').toggleClass('route-builder-active');
 });
 
+$(document).ready(function(){
+  // Додаємо обробник події для першого поля вводу
+  $('.search-box-input').keydown(function (event) {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+        var inputValue = $('#searchInput').val(); // Отримання значення поля вводу
+        $('.route-builder .search-input:first').val(inputValue);
+    }
+  });
+  
+  // Обробник події click для кнопки пошуку
+  $('.search-box-btn').click(function (e) {
+    e.preventDefault();
+    var inputValue = $('#searchInput').val(); // Отримання значення поля вводу
+    $('.route-builder .search-input:first').val(inputValue);
+  });
+});
+
 

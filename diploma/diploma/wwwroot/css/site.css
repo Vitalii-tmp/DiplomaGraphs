@@ -230,7 +230,6 @@ body, html {
     left: 90px;
     top: 10px;
     width: 375px;
-    height: 420px;
     display: flex;
     flex-direction: column;
 }
@@ -249,14 +248,17 @@ body, html {
 
 
 .sb-suggestions {
-    /* display: none; */
+    position: absolute;
+    left: 90px;
+    top: 53px;
+    z-index: 50;
     list-style-type: none;
     align-items: center;
     padding: 0;
     transform: translateX(-110%);
     padding-top: 5px;
     margin-top: 15px;
-    width: 100%;
+    width: 375px;
     height: 275px;
     background-color: var(--bg-color);
     border-radius: 10px;
