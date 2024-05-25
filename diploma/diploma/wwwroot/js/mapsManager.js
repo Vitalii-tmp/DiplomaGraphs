@@ -213,7 +213,6 @@ function drawRoute(coords){
     var directionsRenderer = new google.maps.DirectionsRenderer({
       map: map
     });
-  
     // Создание массива точек назначения
     var waypoints = [];
     for (var i = 0; i < coords.length; i++) {
@@ -240,3 +239,7 @@ function drawRoute(coords){
     });
   }
   
+  function clearRoutes() {
+    // Очистка всіх маршрутів на карті
+    directionsRenderer.set('directions', null);
+}
