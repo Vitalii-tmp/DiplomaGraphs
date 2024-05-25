@@ -29,3 +29,7 @@ C:\Users\vital\Documents\GitHub\DiplomaGraphs\diploma\diploma\obj\Debug\net8.0\r
 C:\Users\vital\Documents\GitHub\DiplomaGraphs\diploma\diploma\obj\Debug\net8.0\diploma.pdb
 C:\Users\vital\Documents\GitHub\DiplomaGraphs\diploma\diploma\obj\Debug\net8.0\diploma.genruntimeconfig.cache
 C:\Users\vital\Documents\GitHub\DiplomaGraphs\diploma\diploma\obj\Debug\net8.0\ref\diploma.dll
+C:\Users\vital\Documents\GitHub\DiplomaGraphs\diploma\diploma\bin\Debug\net8.0\GoogleMapsApi.dll
+C:\Users\vital\Documents\GitHub\DiplomaGraphs\diploma\diploma\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\vital\Documents\GitHub\DiplomaGraphs\diploma\diploma\obj\Debug\net8.0\diploma.csproj.AssemblyReference.cache
+C:\Users\vital\Documents\GitHub\DiplomaGraphs\diploma\diploma\obj\Debug\net8.0\diploma.csproj.Up2Date
