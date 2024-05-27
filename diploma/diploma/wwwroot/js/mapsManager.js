@@ -1,6 +1,7 @@
 let map;
 let markers = [];
-
+var directionsRenderer;
+let trafficLayer;
 // Ініціалізація карти
 function initMap() {
     // Створення карти, центрованої на заданих координатах (Сідней, Австралія)
@@ -13,6 +14,18 @@ function initMap() {
     document.querySelectorAll('.search-input').forEach(function(input) {
         rb_autocompleteInit(input);
     });
+// Ініціалізація DirectionsRenderer один раз
+// Ініціалізація DirectionsRenderer
+directionsRenderer = new google.maps.DirectionsRenderer({
+    map: map,
+    
+  });
+
+//   // Ініціалізація TrafficLayer для відображення пробок
+//   trafficLayer = new google.maps.TrafficLayer();
+//   trafficLayer.setMap(map);
+
+
 
     autocompleteInit();
 }
@@ -95,6 +108,8 @@ function rb_autocompleteInit(input) {
         });
     });
 }
+
+
 
 // Функція пошуку місця
 function searchPlace(address) {
@@ -206,40 +221,92 @@ function saveCoordinates(latitude, longitude) {
 }
 
 
-function drawRoute(coords){
+function drawRoute(coords) {
+    // Створення DirectionsService
+    const directionsService = new google.maps.DirectionsService();
 
-    // Создание DirectionsService и DirectionsRenderer
-    var directionsService = new google.maps.DirectionsService();
-    var directionsRenderer = new google.maps.DirectionsRenderer({
-      map: map
-    });
-    // Создание массива точек назначения
-    var waypoints = [];
-    for (var i = 0; i < coords.length; i++) {
+    // Створення масиву точок призначення
+    const waypoints = [];
+    for (let i = 0; i < coords.length; i++) {
       waypoints.push({
         location: new google.maps.LatLng(coords[i].lat, coords[i].lng),
-        stopover: true
+        stopover: true,
       });
     }
-  
-    // Запрос маршрута с точками назначения
-    var request = {
-      origin: new google.maps.LatLng(coords[0].lat, coords[0].lng), // Начальная точка
-      destination: new google.maps.LatLng(coords[coords.length - 1].lat, coords[coords.length - 1].lng), // Конечная точка
-      waypoints: waypoints.slice(1, -1), // Промежуточные точки (отбрасываем начальную и конечную)
-      travelMode: 'DRIVING' // Режим перемещения (DRIVING - автомобиль)
+
+    // Запит маршруту з точками призначення
+    const request = {
+      origin: new google.maps.LatLng(coords[0].lat, coords[0].lng), // Початкова точка
+      destination: new google.maps.LatLng(coords[coords.length - 1].lat, coords[coords.length - 1].lng), // Кінцева точка
+      waypoints: waypoints.slice(1, -1), // Проміжні точки (відкидаємо початкову та кінцеву)
+      travelMode: 'DRIVING', // Режим переміщення (DRIVING - автомобіль),
+      provideRouteAlternatives: true, // Надання альтернативних маршрутів
     };
-  
-    // Отправка запроса маршрута
-    directionsService.route(request, function(result, status) {
-      if (status == 'OK') {
-        // Отображение маршрута на карте
+
+    // Очищення попереднього маршруту
+    directionsRenderer.set('directions', null);
+
+    // Виклик функції для отримання всіх маршрутів
+    // getAllRoutes(coords[0], coords[coords.length - 1]);
+    
+    // Відправка запиту маршруту
+    directionsService.route(request, function (result, status) {
+      if (status === 'OK') {
+        // Відображення маршруту на карті
         directionsRenderer.setDirections(result);
+
+        // // Додавання маркерів для кожного кроку маршруту
+        // const route = result.routes[0];
+        // for (let i = 0; i < route.legs.length; i++) {
+        //   const leg = route.legs[i];
+        //   for (let j = 0; j < leg.steps.length; j++) {
+        //     const step = leg.steps[j];
+        //     addMarker(step.start_location.lat(), step.start_location.lng(), step.instructions);
+        //   }
+        // }
       }
     });
+    // // Виклик функції для отримання всіх маршрутів
+    // getAllRoutes({ lat: -34.397, lng: 150.644 }, { lat: -33.867, lng: 151.207 });
+  }
+
+  function addMarker(lat, lng, title) {
+    const marker = new google.maps.Marker({
+      position: { lat, lng },
+      map: map,
+      title: title,
+    });
+    markers.push(marker);
   }
   
-  function clearRoutes() {
-    // Очистка всіх маршрутів на карті
-    directionsRenderer.set('directions', null);
-}
+
+//   function getAllRoutes(origin, destination) {
+//     const directionsService = new google.maps.DirectionsService();
+  
+//     const request = {
+//       origin: new google.maps.LatLng(origin.lat, origin.lng),
+//       destination: new google.maps.LatLng(destination.lat, destination.lng),
+//       travelMode: 'DRIVING',
+//       provideRouteAlternatives: true
+//     };
+  
+//     directionsService.route(request, (result, status) => {
+//       if (status === 'OK') {
+//         const numRoutes = result.routes.length;
+//         console.log(`Number of alternative routes: ${numRoutes}`);
+        
+//         // Проходимо по кожному маршруту і виводимо інформацію
+//         result.routes.forEach((route, index) => {
+//           console.log(`Route ${index + 1}:`);
+//           console.log(`  Length: ${route.legs[0].distance.text}`);
+//           console.log(`  Duration: ${route.legs[0].duration.text}`);
+//         });
+//       } else {
+//         console.error('Error occurred: ', status);
+//       }
+//     });
+// }
+
+  
+  
+  

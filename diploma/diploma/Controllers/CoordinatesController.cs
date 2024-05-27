@@ -10,6 +10,7 @@ using GoogleMapsApi.Entities.Geocoding.Response;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 
+
 namespace diploma.Controllers
 {
     public class CoordinatesController : Controller
@@ -46,7 +47,8 @@ namespace diploma.Controllers
                 // var roadDistance = await DistanceController.GetDistanceByRoadAsync(coordinatesList[0], coordinatesList[1]);
                 Console.WriteLine($"Расстояние между первой и второй точками: {distance} км");
                 // var fakeCoords = new CoordinatesModel { Latitude = distance, Longitude = roadDistance };
-                
+                //Log.Information("Повідомлення для логування.");
+               
                 // coordinatesList.Add(fakeCoords);
             }
             

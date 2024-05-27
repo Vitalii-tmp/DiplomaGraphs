@@ -1,9 +1,17 @@
-var builder = WebApplication.CreateBuilder(args);
+﻿var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+// Configure logging
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+builder.Logging.AddDebug(); // Додайте Debug провайдер для додаткових логів
+
+
 var app = builder.Build();
+app.Logger.LogInformation("Adding Routes");
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -38,3 +46,4 @@ app.MapControllers();
 
 
 app.Run();
+

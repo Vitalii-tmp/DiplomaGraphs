@@ -33,3 +33,6 @@ C:\Users\vital\Documents\GitHub\DiplomaGraphs\diploma\diploma\bin\Debug\net8.0\G
 C:\Users\vital\Documents\GitHub\DiplomaGraphs\diploma\diploma\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\vital\Documents\GitHub\DiplomaGraphs\diploma\diploma\obj\Debug\net8.0\diploma.csproj.AssemblyReference.cache
 C:\Users\vital\Documents\GitHub\DiplomaGraphs\diploma\diploma\obj\Debug\net8.0\diploma.csproj.Up2Date
+C:\Users\vital\Documents\GitHub\DiplomaGraphs\diploma\diploma\bin\Debug\net8.0\NLog.dll
+C:\Users\vital\Documents\GitHub\DiplomaGraphs\diploma\diploma\bin\Debug\net8.0\NLog.Extensions.Logging.dll
+C:\Users\vital\Documents\GitHub\DiplomaGraphs\diploma\diploma\bin\Debug\net8.0\NLog.Web.AspNetCore.dll
