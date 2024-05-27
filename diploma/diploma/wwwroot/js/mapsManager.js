@@ -1,6 +1,23 @@
+const colors = [
+    'red', 
+    'blue', 
+    'green', 
+    'orange', 
+    'purple', 
+    'yellow', 
+    'pink', 
+    'cyan', 
+    'magenta', 
+    'lime'
+];
+
+
+
 let map;
 let markers = [];
 var directionsRenderer;
+// Зберігання посилань на всі DirectionsRenderer
+const directionsRenderers = [];
 let trafficLayer;
 // Ініціалізація карти
 function initMap() {
@@ -18,8 +35,13 @@ function initMap() {
 // Ініціалізація DirectionsRenderer
 directionsRenderer = new google.maps.DirectionsRenderer({
     map: map,
-    
-  });
+    polylineOptions: {
+        strokeColor: 'red', // Колір лінії маршруту
+        strokeOpacity: 0.6, // Прозорість лінії маршруту
+        strokeWeight: 6 // Товщина лінії маршруту
+    }
+});
+
 
 //   // Ініціалізація TrafficLayer для відображення пробок
 //   trafficLayer = new google.maps.TrafficLayer();
@@ -245,9 +267,6 @@ function drawRoute(coords) {
 
     // Очищення попереднього маршруту
     directionsRenderer.set('directions', null);
-
-    // Виклик функції для отримання всіх маршрутів
-    // getAllRoutes(coords[0], coords[coords.length - 1]);
     
     // Відправка запиту маршруту
     directionsService.route(request, function (result, status) {
@@ -255,30 +274,53 @@ function drawRoute(coords) {
         // Відображення маршруту на карті
         directionsRenderer.setDirections(result);
 
-        // // Додавання маркерів для кожного кроку маршруту
-        // const route = result.routes[0];
-        // for (let i = 0; i < route.legs.length; i++) {
-        //   const leg = route.legs[i];
-        //   for (let j = 0; j < leg.steps.length; j++) {
-        //     const step = leg.steps[j];
-        //     addMarker(step.start_location.lat(), step.start_location.lng(), step.instructions);
-        //   }
-        // }
+        
       }
     });
-    // // Виклик функції для отримання всіх маршрутів
-    // getAllRoutes({ lat: -34.397, lng: 150.644 }, { lat: -33.867, lng: 151.207 });
+    
   }
 
-  function addMarker(lat, lng, title) {
+//   function addMarker(lat, lng, title) {
+//     const marker = new google.maps.Marker({
+//       position: { lat, lng },
+//       map: map,
+//       title: title,
+//     });
+//     markers.push(marker);
+//   }
+
+  // Масив з буквами для маркерів
+const labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+// Функція для додавання маркера з буквою
+function addMarker(position, label, map, markersArray) {
     const marker = new google.maps.Marker({
-      position: { lat, lng },
-      map: map,
-      title: title,
+        position: position,
+        label: label,
+        map: map
     });
-    markers.push(marker);
-  }
+    markers.push(marker); // Додаємо маркер до масиву
+}
   
+function createMarkerWithColor(position, label, map, color) {
+    // Створюємо зображення маркера з вказаним кольором
+    const pinSymbol = {
+        path: google.maps.SymbolPath.CIRCLE,
+        fillColor: color,
+        fillOpacity: 1,
+        strokeColor: '#000',
+        strokeWeight: 2,
+        scale: 10
+    };
+
+    // Створюємо маркер зі змінним кольором
+    return new google.maps.Marker({
+        position: position,
+        label: label,
+        icon: pinSymbol,
+        map: map
+    });
+}
 
 //   function getAllRoutes(origin, destination) {
 //     const directionsService = new google.maps.DirectionsService();
@@ -307,6 +349,63 @@ function drawRoute(coords) {
 //     });
 // }
 
-  
+function drawRouteSegment(start, end, color, map, labelStart, labelEnd) {
+    const directionsService = new google.maps.DirectionsService();
+    const directionsRenderer = new google.maps.DirectionsRenderer({
+        map: map,
+        suppressMarkers: true, // Вимкнення автоматичних маркерів
+        polylineOptions: {
+            strokeColor: color,
+            strokeOpacity: 0.6,
+            strokeWeight: 6
+        }
+    });
+    directionsRenderers.push(directionsRenderer); // Додавання до масиву для подальшого очищення
+    const request = {
+        origin: start,
+        destination: end,
+        travelMode: 'DRIVING',
+        provideRouteAlternatives: true
+    };
+
+    directionsService.route(request, function (result, status) {
+        if (status === 'OK') {
+            directionsRenderer.setDirections(result);
+
+            // Додаємо маркери з буквами
+            addMarker(start, labelStart, map);
+            addMarker(end, labelEnd, map);
+        }
+    });
+}
+
+function drawMultiColoredRoute(coords, colors, map) {
+    clearMarkers();
+    clearAllDirectionsRenderers();
+    for (let i = 0; i < coords.length - 1; i++) {
+        const start = new google.maps.LatLng(coords[i].lat, coords[i].lng);
+        const end = new google.maps.LatLng(coords[i + 1].lat, coords[i + 1].lng);
+        const color = colors[i % colors.length]; // Використовуйте кольори по колу
+        const labelStart = labels[i % labels.length]; // Використовуйте букви по колу
+        const labelEnd = labels[(i + 1) % labels.length]; // Наступна буква
+
+        drawRouteSegment(start, end, color, map, labelStart, labelEnd);
+    }
+}
+
+function clearMarkers() {
+    for (let i = 0; i < markers.length; i++) {
+        markers[i].setMap(null);
+    }
+    markers = [];
+}
+
+
+function clearAllDirectionsRenderers() {
+    directionsRenderers.forEach(renderer => {
+        renderer.setMap(null); // Видалення DirectionsRenderer з карти
+    });
+    directionsRenderers.length = 0; // Очищення масиву посилань
+}
   
   

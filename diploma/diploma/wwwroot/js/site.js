@@ -113,7 +113,9 @@ function sendRouteData(routePoints) {
       alert('Маршрут успешно построен');
 
       // Построение маршрута на карте
-      drawRoute(convertCoordinates(response));
+      // drawRoute(convertCoordinates(response));
+      //
+      drawMultiColoredRoute(convertCoordinates(response),colors,map);
     },
     error: function(error) {
       // Обработка ошибки

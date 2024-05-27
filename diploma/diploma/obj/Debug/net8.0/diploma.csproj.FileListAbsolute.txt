@@ -36,3 +36,5 @@ C:\Users\vital\Documents\GitHub\DiplomaGraphs\diploma\diploma\obj\Debug\net8.0\d
 C:\Users\vital\Documents\GitHub\DiplomaGraphs\diploma\diploma\bin\Debug\net8.0\NLog.dll
 C:\Users\vital\Documents\GitHub\DiplomaGraphs\diploma\diploma\bin\Debug\net8.0\NLog.Extensions.Logging.dll
 C:\Users\vital\Documents\GitHub\DiplomaGraphs\diploma\diploma\bin\Debug\net8.0\NLog.Web.AspNetCore.dll
+C:\Users\vital\Documents\GitHub\DiplomaGraphs\diploma\diploma\bin\Debug\net8.0\Serilog.dll
+C:\Users\vital\Documents\GitHub\DiplomaGraphs\diploma\diploma\bin\Debug\net8.0\Serilog.Sinks.File.dll
