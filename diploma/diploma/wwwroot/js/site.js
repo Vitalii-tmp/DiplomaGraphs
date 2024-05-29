@@ -107,31 +107,51 @@ function convertCoordinates(coordinatesList) {
 
 // Функція для надсилання списку координат на сервер та побудови маршруту
 function sendRouteData(routePoints) {
-    console.log(routePoints);
-    $.ajax({
-        url: '/Coordinates/SaveAddresses',
-        method: 'POST',
-        contentType: 'application/json',
-        data: JSON.stringify(routePoints),
-        success: function (response) {
-            // Обробка успішної відповіді від бекенда
-            console.log('Маршрут успешно построен:', response);
-            alert('Маршрут успешно построен');
+  console.log(routePoints);
+  $.ajax({
+      url: '/Coordinates/SaveAddresses',
+      method: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify(routePoints),
+      success: function (response) {
+          console.log('Маршрут успішно побудований:', response);
+          alert('Маршрут успішно побудований');
+          
+          // Масив для зберігання координат
+          var coordinatesList = [];
+          var addresesList = [];
 
-            //тут виведемо адреси які прийшли в response
+          // Вивести адреси з координатами
+          response.forEach(function(pair) {
+              for (const [address, coordinates] of Object.entries(pair)) {
+                  console.log(`Адреса: ${address}, Координати: (${coordinates.latitude}, ${coordinates.longitude})`);
+                  // Додаємо координати до списку
+                  coordinatesList.push(coordinates);
+                  addresesList.push(address);
+              }
+          });
+          
+          console.log('Список координат:', coordinatesList);
 
-            
-            
-            //будуємо маршрут
-            drawMultiColoredRoute(convertCoordinates(response), colors, map);
-        },
-        error: function (error) {
-            // Обробка помилки
-            console.error('Ошибка при построении маршрута:', error);
-            alert('Ошибка при построении маршрута');
-        }
-    });
+          // Будуємо маршрут
+          drawMultiColoredRoute(convertCoordinates(coordinatesList), colors, map);
+
+          //тут перевизначаємо список інпутів впорядкованими значеннями
+          var inputElements = document.querySelectorAll('.search-input');
+          
+          
+          // Перебираємо всі інпути та встановлюємо нове значення
+          for (var i = 0; i < inputElements.length; i++) {
+            inputElements[i].value = addresesList[i];
+          }
+      },
+      error: function (error) {
+          console.error('ERROR!!!!!!!:', error);
+          alert('Помилка при побудові маршрута');
+      }
+  });
 }
+
 
 //закрити routebuilder
 $('.route-builder-close-btn').click(function (e) {
