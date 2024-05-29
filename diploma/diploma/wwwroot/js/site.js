@@ -132,7 +132,7 @@ function sendRouteData(routePoints) {
           });
           
           console.log('Список координат:', coordinatesList);
-
+          console.log('Список адрес', addresesList)
           // Будуємо маршрут
           drawMultiColoredRoute(convertCoordinates(coordinatesList), colors, map);
 
