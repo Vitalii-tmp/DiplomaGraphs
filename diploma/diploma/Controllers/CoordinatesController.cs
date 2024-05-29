@@ -27,26 +27,37 @@ namespace diploma.Controllers
         //асинхронна функція яка зберігає координати
 
         [HttpPost]
-        public async Task<ActionResult<List<Dictionary<string, CoordinatesModel>>>> SaveAddresses([FromBody] List<AddressModel> addresses)
+        public async Task<ActionResult<List<CoordinatesModel>>> SaveAddresses([FromBody] List<AddressModel> addresses)
         {
-            var addressCoordinatesList = new List<Dictionary<string, CoordinatesModel>>();
+            var coordinatesList = new List<CoordinatesModel>();
 
             foreach (var address in addresses)
             {
                 var coordinates = await GetCoordinatesAsync(address.Address);
                 if (coordinates != null)
                 {
-                    addressCoordinatesList.Add(new Dictionary<string, CoordinatesModel>
-                    {
-                        { address.Address, coordinates }
-                    });
+                    coordinatesList.Add(coordinates);
                 }
             }
 
-            var solver = new TSPSolver(addressCoordinatesList);
-            var optimalRoute = solver.FindShortestPath();
 
-            return Ok(optimalRoute);
+            if (coordinatesList.Count >= 2)
+            {
+                var distance = DistanceController.GetDistance(coordinatesList[0], coordinatesList[1]);
+                // var roadDistance = await DistanceController.GetDistanceByRoadAsync(coordinatesList[0], coordinatesList[1]);
+                Console.WriteLine($"Расстояние между первой и второй точками: {distance} км");
+                // var fakeCoords = new CoordinatesModel { Latitude = distance, Longitude = roadDistance };
+                //Log.Information("Повідомлення для логування.");
+
+                // coordinatesList.Add(fakeCoords);
+
+
+            }
+
+            var solver = new TSPSolver(coordinatesList);
+            var optimalRoute = await solver.FindShortestPathAsync();
+            return optimalRoute;
+
         }
 
 
@@ -61,7 +72,7 @@ namespace diploma.Controllers
                 Address = address,
                 ApiKey = apiKey
             };
-              // запит до гугла з геокодуванням
+            // запит до гугла з геокодуванням
             GeocodingResponse response = await GoogleMaps.Geocode.QueryAsync(request);
 
             if (response.Status == GoogleMapsApi.Entities.Geocoding.Response.Status.OK && response.Results.Any())
@@ -75,8 +86,8 @@ namespace diploma.Controllers
             }
         }
 
-        
 
-        
+
+
     }
 }
