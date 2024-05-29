@@ -280,16 +280,6 @@ function drawRoute(coords) {
     
   }
 
-//   function addMarker(lat, lng, title) {
-//     const marker = new google.maps.Marker({
-//       position: { lat, lng },
-//       map: map,
-//       title: title,
-//     });
-//     markers.push(marker);
-//   }
-
-  // Масив з буквами для маркерів
 const labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 // Функція для додавання маркера з буквою
@@ -321,33 +311,6 @@ function createMarkerWithColor(position, label, map, color) {
         map: map
     });
 }
-
-//   function getAllRoutes(origin, destination) {
-//     const directionsService = new google.maps.DirectionsService();
-  
-//     const request = {
-//       origin: new google.maps.LatLng(origin.lat, origin.lng),
-//       destination: new google.maps.LatLng(destination.lat, destination.lng),
-//       travelMode: 'DRIVING',
-//       provideRouteAlternatives: true
-//     };
-  
-//     directionsService.route(request, (result, status) => {
-//       if (status === 'OK') {
-//         const numRoutes = result.routes.length;
-//         console.log(`Number of alternative routes: ${numRoutes}`);
-        
-//         // Проходимо по кожному маршруту і виводимо інформацію
-//         result.routes.forEach((route, index) => {
-//           console.log(`Route ${index + 1}:`);
-//           console.log(`  Length: ${route.legs[0].distance.text}`);
-//           console.log(`  Duration: ${route.legs[0].duration.text}`);
-//         });
-//       } else {
-//         console.error('Error occurred: ', status);
-//       }
-//     });
-// }
 
 function drawRouteSegment(start, end, color, map, labelStart, labelEnd) {
     const directionsService = new google.maps.DirectionsService();

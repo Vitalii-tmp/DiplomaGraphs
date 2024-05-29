@@ -119,6 +119,7 @@ function sendRouteData(routePoints) {
     },
     error: function(error) {
       // Обработка ошибки
+      
       console.error('Ошибка при построении маршрута:', error);
       alert('Ошибка при построении маршрута');
     }

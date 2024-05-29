@@ -30,7 +30,7 @@ namespace diploma.Controllers
         public async Task<ActionResult<List<CoordinatesModel>>> SaveAddresses([FromBody] List<AddressModel> addresses)
         {
             var coordinatesList = new List<CoordinatesModel>();
-            
+    
             foreach (var address in addresses)
             {
                 var coordinates = await GetCoordinatesAsync(address.Address);
@@ -48,11 +48,16 @@ namespace diploma.Controllers
                 Console.WriteLine($"Расстояние между первой и второй точками: {distance} км");
                 // var fakeCoords = new CoordinatesModel { Latitude = distance, Longitude = roadDistance };
                 //Log.Information("Повідомлення для логування.");
-               
+                
                 // coordinatesList.Add(fakeCoords);
+
+                
             }
-            
-            return coordinatesList;
+
+            var solver = new TSPSolver(coordinatesList);
+            var optimalRoute = await solver.FindShortestPathAsync();
+            return optimalRoute;
+
         }
 
 
