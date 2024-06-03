@@ -123,7 +123,18 @@ function sendRouteData(routePoints) {
             // //
             const coordinates = response.map(pair => pair.coordinates);
             console.log(coordinates);
-            drawMultiColoredRoute(convertCoordinates(coordinates), colors, map);
+
+            var coordsList = [];  // Ініціалізація як порожнього масиву
+            for (let i = 0; i < response.length; i++) {
+              const pair = response[i];
+              if (pair && pair.address && pair.coordinates) {
+                  console.log(`Address: ${pair.address}`);
+                  console.log(`Coordinate]: ${pair.coordinates}`);
+                  coordsList.push(pair.coordinates);
+              }
+          }
+          console.log(coordsList);
+            drawMultiColoredRoute(convertCoordinates(coordsList), colors, map);
             
         },
         error: function (error) {
