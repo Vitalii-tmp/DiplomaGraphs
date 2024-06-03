@@ -1,24 +1,23 @@
 const colors = [
-    'red', 
-    'blue', 
-    'green', 
-    'orange', 
-    'purple', 
-    'yellow', 
-    'pink', 
-    'cyan', 
-    'magenta', 
+    'red',
+    'blue',
+    'green',
+    'orange',
+    'purple',
+    'yellow',
+    'pink',
+    'cyan',
+    'magenta',
     'lime'
 ];
-
-
-
+const labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 let map;
 let markers = [];
 var directionsRenderer;
 // Зберігання посилань на всі DirectionsRenderer
 const directionsRenderers = [];
 let trafficLayer;
+
 // Ініціалізація карти
 function initMap() {
     // Створення карти, центрованої на заданих координатах (Сідней, Австралія)
@@ -28,27 +27,23 @@ function initMap() {
     });
 
     // Ініціалізація автозаповнення для всіх існуючих полів
-    document.querySelectorAll('.search-input').forEach(function(input) {
+    document.querySelectorAll('.search-input').forEach(function (input) {
         rb_autocompleteInit(input);
     });
-// Ініціалізація DirectionsRenderer один раз
-// Ініціалізація DirectionsRenderer
-directionsRenderer = new google.maps.DirectionsRenderer({
-    map: map,
-    polylineOptions: {
-        strokeColor: 'red', // Колір лінії маршруту
-        strokeOpacity: 0.6, // Прозорість лінії маршруту
-        strokeWeight: 6 // Товщина лінії маршруту
-    }
-});
+    // Ініціалізація DirectionsRenderer один раз
+    // Ініціалізація DirectionsRenderer
+    directionsRenderer = new google.maps.DirectionsRenderer({
+        map: map,
+        polylineOptions: {
+            strokeColor: 'red', // Колір лінії маршруту
+            strokeOpacity: 0.6, // Прозорість лінії маршруту
+            strokeWeight: 6 // Товщина лінії маршруту
+        }
+    });
 
-
-//   // Ініціалізація TrafficLayer для відображення пробок
-//   trafficLayer = new google.maps.TrafficLayer();
-//   trafficLayer.setMap(map);
-
-
-
+    //   // Ініціалізація TrafficLayer для відображення пробок
+    //   trafficLayer = new google.maps.TrafficLayer();
+    //   trafficLayer.setMap(map);
     autocompleteInit();
 }
 
@@ -58,28 +53,28 @@ function autocompleteInit() {
     var input = document.getElementById('searchInput');
     var suggestionsList = document.getElementById('sb-suggestions');
 
-    input.addEventListener('input', function() {
+    input.addEventListener('input', function () {
         var query = input.value;
-        
+
         // Виклик автозаповнення
-        autocompleteService.getPlacePredictions({ input: query, types: ['geocode', 'establishment'] }, function(predictions, status) {
+        autocompleteService.getPlacePredictions({ input: query, types: ['geocode', 'establishment'] }, function (predictions, status) {
             if (status === google.maps.places.PlacesServiceStatus.OK) {
                 // Очищення попередніх підказок
                 suggestionsList.innerHTML = '';
 
                 // Створення нових підказок і додавання їх до списку
-                predictions.forEach(function(prediction) {
+                predictions.forEach(function (prediction) {
                     var listItem = document.createElement('li');
                     listItem.textContent = prediction.description;
                     suggestionsList.appendChild(listItem);
 
                     // Обробник кліка для вибору підказки
-                    listItem.addEventListener('click', function() {
+                    listItem.addEventListener('click', function () {
                         input.value = prediction.description;
                         searchPlace(input.value);
                         $('.route-builder').toggleClass('route-builder-active');
                         var inputValue = $('#searchInput').val(); // Отримання значення поля вводу
-                         $('.route-builder .search-input:first').val(inputValue);
+                        $('.route-builder .search-input:first').val(inputValue);
                     });
                 });
             } else {
@@ -98,23 +93,23 @@ function rb_autocompleteInit(input) {
     var autocompleteService = new google.maps.places.AutocompleteService();
     var suggestionsList = document.querySelector('.rb-suggestions');
 
-    input.addEventListener('input', function() {
+    input.addEventListener('input', function () {
         var query = input.value;
 
         // Виклик автозаповнення
-        autocompleteService.getPlacePredictions({ input: query, types: ['geocode', 'establishment'] }, function(predictions, status) {
+        autocompleteService.getPlacePredictions({ input: query, types: ['geocode', 'establishment'] }, function (predictions, status) {
             if (status === google.maps.places.PlacesServiceStatus.OK) {
                 // Очищення попередніх підказок
                 suggestionsList.innerHTML = '';
 
                 // Створення нових підказок і додавання їх до списку
-                predictions.forEach(function(prediction) {
+                predictions.forEach(function (prediction) {
                     var listItem = document.createElement('li');
                     listItem.textContent = prediction.description;
                     suggestionsList.appendChild(listItem);
 
                     // Обробник кліка для вибору підказки
-                    listItem.addEventListener('click', function() {
+                    listItem.addEventListener('click', function () {
                         input.value = prediction.description;
                         searchPlace(input.value);
                         suggestionsList.innerHTML = '';
@@ -176,7 +171,7 @@ function searchPlace(address) {
                         position: place.geometry.location,
                         title: place.name
                     });
-                    saveCoordinates(1,1);
+                    saveCoordinates(1, 1);
                     markers.push(marker);
 
                     // Розширення меж карти для відображення всіх маркерів
@@ -195,6 +190,7 @@ function searchPlace(address) {
 
 }
 
+//При натисканні ENTER or search 
 $(document).ready(function () {
     // Обробник події keydown для стандартного поля вводу
     $('.search-box-input').keydown(function (event) {
@@ -215,15 +211,9 @@ $(document).ready(function () {
     });
 });
 
-$(document).on('keydown', '.search-input', function(event) {
-    if (event.key === 'Enter') {
-        event.preventDefault();
-        var inputValue = $(this).val(); // Отримання значення поточного поля вводу
-        searchPlace(inputValue);
-    }
-});
 
-// Функція для збереження координат
+
+// Функція для збереження координат ТЕСТ AJAX
 function saveCoordinates(latitude, longitude) {
     $.ajax({
         url: '/Coordinates/Save',
@@ -242,7 +232,7 @@ function saveCoordinates(latitude, longitude) {
     });
 }
 
-
+//Функція для малювання маршруту ТЕСТОВА
 function drawRoute(coords) {
     // Створення DirectionsService
     const directionsService = new google.maps.DirectionsService();
@@ -250,37 +240,37 @@ function drawRoute(coords) {
     // Створення масиву точок призначення
     const waypoints = [];
     for (let i = 0; i < coords.length; i++) {
-      waypoints.push({
-        location: new google.maps.LatLng(coords[i].lat, coords[i].lng),
-        stopover: true,
-      });
+        waypoints.push({
+            location: new google.maps.LatLng(coords[i].lat, coords[i].lng),
+            stopover: true,
+        });
     }
 
     // Запит маршруту з точками призначення
     const request = {
-      origin: new google.maps.LatLng(coords[0].lat, coords[0].lng), // Початкова точка
-      destination: new google.maps.LatLng(coords[coords.length - 1].lat, coords[coords.length - 1].lng), // Кінцева точка
-      waypoints: waypoints.slice(1, -1), // Проміжні точки (відкидаємо початкову та кінцеву)
-      travelMode: 'DRIVING', // Режим переміщення (DRIVING - автомобіль),
-      provideRouteAlternatives: true, // Надання альтернативних маршрутів
+        origin: new google.maps.LatLng(coords[0].lat, coords[0].lng), // Початкова точка
+        destination: new google.maps.LatLng(coords[coords.length - 1].lat, coords[coords.length - 1].lng), // Кінцева точка
+        waypoints: waypoints.slice(1, -1), // Проміжні точки (відкидаємо початкову та кінцеву)
+        travelMode: 'DRIVING', // Режим переміщення (DRIVING - автомобіль),
+        provideRouteAlternatives: true, // Надання альтернативних маршрутів
     };
 
     // Очищення попереднього маршруту
     directionsRenderer.set('directions', null);
-    
+
     // Відправка запиту маршруту
     directionsService.route(request, function (result, status) {
-      if (status === 'OK') {
-        // Відображення маршруту на карті
-        directionsRenderer.setDirections(result);
+        if (status === 'OK') {
+            // Відображення маршруту на карті
+            directionsRenderer.setDirections(result);
 
-        
-      }
+
+        }
     });
-    
-  }
 
-const labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+}
+
+
 
 // Функція для додавання маркера з буквою
 function addMarker(position, label, map, markersArray) {
@@ -291,27 +281,8 @@ function addMarker(position, label, map, markersArray) {
     });
     markers.push(marker); // Додаємо маркер до масиву
 }
-  
-function createMarkerWithColor(position, label, map, color) {
-    // Створюємо зображення маркера з вказаним кольором
-    const pinSymbol = {
-        path: google.maps.SymbolPath.CIRCLE,
-        fillColor: color,
-        fillOpacity: 1,
-        strokeColor: '#000',
-        strokeWeight: 2,
-        scale: 10
-    };
 
-    // Створюємо маркер зі змінним кольором
-    return new google.maps.Marker({
-        position: position,
-        label: label,
-        icon: pinSymbol,
-        map: map
-    });
-}
-
+//Функція для малювання частини маршруту (між двома точками)
 function drawRouteSegment(start, end, color, map, labelStart, labelEnd) {
     const directionsService = new google.maps.DirectionsService();
     const directionsRenderer = new google.maps.DirectionsRenderer({
@@ -342,6 +313,7 @@ function drawRouteSegment(start, end, color, map, labelStart, labelEnd) {
     });
 }
 
+//Функція для малювання всього маршруту різними кольорами
 function drawMultiColoredRoute(coords, colors, map) {
     clearMarkers();
     clearAllDirectionsRenderers();
@@ -356,6 +328,7 @@ function drawMultiColoredRoute(coords, colors, map) {
     }
 }
 
+//видалення всіх маркерів
 function clearMarkers() {
     for (let i = 0; i < markers.length; i++) {
         markers[i].setMap(null);
@@ -363,12 +336,11 @@ function clearMarkers() {
     markers = [];
 }
 
-
+//очищення всіх рендерерів
 function clearAllDirectionsRenderers() {
     directionsRenderers.forEach(renderer => {
         renderer.setMap(null); // Видалення DirectionsRenderer з карти
     });
     directionsRenderers.length = 0; // Очищення масиву посилань
 }
-  
-  
+
