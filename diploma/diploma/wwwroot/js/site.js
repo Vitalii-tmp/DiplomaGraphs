@@ -128,13 +128,22 @@ function sendRouteData(routePoints) {
             for (let i = 0; i < response.length; i++) {
                 const pair = response[i];
                 if (pair && pair.address && pair.coordinates) {
-                    console.log(`Address: ${pair.address}`);
-                    console.log(`Coordinate]: ${pair.coordinates}`);
+                  
                     coordsList.push(pair.coordinates);
                 }
             }
-            console.log(coordsList + "saa");
+            
             drawMultiColoredRoute(convertCoordinates(coordsList), colors, map);
+
+            const inputs = document.querySelectorAll('.search-input');
+            
+            // Перебираємо інпути і зберігаємо їх значення в масив
+            
+
+            for (let i = 0; i < inputs.length; i++) {
+                inputs[i].value = response[i].address.address;
+            }
+
 
         },
         error: function (error) {
