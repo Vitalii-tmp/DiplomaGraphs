@@ -121,21 +121,21 @@ function sendRouteData(routePoints) {
             // // Построение маршрута на карте
             // // drawRoute(convertCoordinates(response));
             // //
-            const coordinates = response.map(pair => pair.coordinates);
-            console.log(coordinates);
+            // const coordinates = response.map(pair => pair.coordinates);
+            // console.log(coordinates);
 
             var coordsList = [];  // Ініціалізація як порожнього масиву
             for (let i = 0; i < response.length; i++) {
-              const pair = response[i];
-              if (pair && pair.address && pair.coordinates) {
-                  console.log(`Address: ${pair.address}`);
-                  console.log(`Coordinate]: ${pair.coordinates}`);
-                  coordsList.push(pair.coordinates);
-              }
-          }
-          console.log(coordsList);
+                const pair = response[i];
+                if (pair && pair.address && pair.coordinates) {
+                    console.log(`Address: ${pair.address}`);
+                    console.log(`Coordinate]: ${pair.coordinates}`);
+                    coordsList.push(pair.coordinates);
+                }
+            }
+            console.log(coordsList + "saa");
             drawMultiColoredRoute(convertCoordinates(coordsList), colors, map);
-            
+
         },
         error: function (error) {
             // Обробка помилки
