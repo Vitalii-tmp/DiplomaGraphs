@@ -122,6 +122,7 @@ function sendRouteData(routePoints) {
             // // drawRoute(convertCoordinates(response));
             // //
             const coordinates = response.map(pair => pair.coordinates);
+            console.log(coordinates);
             drawMultiColoredRoute(convertCoordinates(coordinates), colors, map);
             
         },
