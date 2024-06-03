@@ -10,21 +10,20 @@ namespace diploma.Controllers
     // Клас для обчислення TSP
     public class TSPSolver
     {
-        private List<CoordinatesModel> coordinates;
+        private List<AddressCoordinatesPair> addressCoordinatesPairs;
         private int numPoints;
         private double[,] distanceMatrix;
         private double bestCost;
         private List<int> bestPath;
 
-        public TSPSolver(List<CoordinatesModel> coordinates)
+        public TSPSolver(List<AddressCoordinatesPair> addressCoordinatesPairs)
         {
-            this.coordinates = coordinates;
-            this.numPoints = coordinates.Count;
+            this.addressCoordinatesPairs = addressCoordinatesPairs;
+            this.numPoints = addressCoordinatesPairs.Count;
             this.distanceMatrix = new double[numPoints, numPoints];
         }
 
-
-        // рахуємо матрицю усміжностей, для оптимізації використав метод паралельних задач
+        // Рахуємо матрицю відстаней, використовуючи адреси-координати
         private async Task CalculateDistanceMatrixAsync()
         {
             var tasks = new List<Task>();
@@ -42,7 +41,7 @@ namespace diploma.Controllers
                         int iCopy = i, jCopy = j;
                         tasks.Add(Task.Run(async () =>
                         {
-                            distanceMatrix[iCopy, jCopy] = await DistanceController.GetDistanceByRoadAsync(coordinates[iCopy], coordinates[jCopy]);
+                            distanceMatrix[iCopy, jCopy] = await DistanceController.GetDistanceByRoadAsync(addressCoordinatesPairs[iCopy].Coordinates, addressCoordinatesPairs[jCopy].Coordinates);
                         }));
                     }
                 }
@@ -51,8 +50,7 @@ namespace diploma.Controllers
             await Task.WhenAll(tasks);
         }
 
-
-        public async Task<List<CoordinatesModel>> FindShortestPathAsync()
+        public async Task<List<AddressCoordinatesPair>> FindShortestPathAsync()
         {
             bestCost = double.MaxValue;
             bestPath = new List<int>();
@@ -65,7 +63,8 @@ namespace diploma.Controllers
 
             BranchAndBound(currentPath, visited, 0);
 
-            return bestPath.Select(index => coordinates[index]).ToList();
+            // Повертаємо оптимальний маршрут в форматі адрес-координат
+            return bestPath.Select(index => addressCoordinatesPairs[index]).ToList();
         }
 
         private void BranchAndBound(List<int> currentPath, bool[] visited, double currentCost)
@@ -98,4 +97,5 @@ namespace diploma.Controllers
             }
         }
     }
+
 }

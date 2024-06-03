@@ -27,38 +27,31 @@ namespace diploma.Controllers
         //асинхронна функція яка зберігає координати
 
         [HttpPost]
-        public async Task<ActionResult<List<CoordinatesModel>>> SaveAddresses([FromBody] List<AddressModel> addresses)
+        public async Task<ActionResult<List<AddressCoordinatesPair>>> SaveAddresses([FromBody] List<AddressModel> addresses)
         {
-            var coordinatesList = new List<CoordinatesModel>();
-
-            foreach (var address in addresses)
+            var tasks = addresses.Select(async address =>
             {
                 var coordinates = await GetCoordinatesAsync(address.Address);
-                if (coordinates != null)
+                return new AddressCoordinatesPair
                 {
-                    coordinatesList.Add(coordinates);
-                }
-            }
+                    Address = address,
+                    Coordinates = coordinates
+                };
+            });
 
+            var addressCoordinatesPairs = await Task.WhenAll(tasks);
 
-            if (coordinatesList.Count >= 2)
-            {
-                var distance = DistanceController.GetDistance(coordinatesList[0], coordinatesList[1]);
-                // var roadDistance = await DistanceController.GetDistanceByRoadAsync(coordinatesList[0], coordinatesList[1]);
-                Console.WriteLine($"Расстояние между первой и второй точками: {distance} км");
-                // var fakeCoords = new CoordinatesModel { Latitude = distance, Longitude = roadDistance };
-                //Log.Information("Повідомлення для логування.");
+            // Виключення пар з null координатами
+            var filteredPairs = addressCoordinatesPairs.Where(pair => pair.Coordinates != null).ToList();
 
-                // coordinatesList.Add(fakeCoords);
+            var tspSolver = new TSPSolver(filteredPairs);
 
+            // Виклик методу FindShortestPathAsync
+            var optimalRoute = await tspSolver.FindShortestPathAsync();
 
-            }
-
-            var solver = new TSPSolver(coordinatesList);
-            var optimalRoute = await solver.FindShortestPathAsync();
-            return optimalRoute;
-
+            return Ok(optimalRoute);
         }
+
 
 
 

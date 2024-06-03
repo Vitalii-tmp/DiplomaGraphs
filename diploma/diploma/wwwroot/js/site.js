@@ -118,10 +118,12 @@ function sendRouteData(routePoints) {
             console.log('Маршрут побудовано успішно:', response);
             alert('Маршрут побудовано успішно:');
 
-            // Построение маршрута на карте
-            // drawRoute(convertCoordinates(response));
-            //
-            drawMultiColoredRoute(convertCoordinates(response), colors, map);
+            // // Построение маршрута на карте
+            // // drawRoute(convertCoordinates(response));
+            // //
+            const coordinates = response.map(pair => pair.coordinates);
+            drawMultiColoredRoute(convertCoordinates(coordinates), colors, map);
+            
         },
         error: function (error) {
             // Обробка помилки
