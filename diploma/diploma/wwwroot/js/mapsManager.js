@@ -23,7 +23,10 @@ function initMap() {
     // Створення карти, центрованої на заданих координатах (Сідней, Австралія)
     map = new google.maps.Map(document.getElementById('map'), {
         center: { lat: -33.8688, lng: 151.2195 },
-        zoom: 13
+        zoom: 13,
+        mapTypeControl: false,
+        zoomControl: false,
+        fullscreenControl: false
     });
 
     // Ініціалізація автозаповнення для всіх існуючих полів
@@ -45,7 +48,36 @@ function initMap() {
     //   trafficLayer = new google.maps.TrafficLayer();
     //   trafficLayer.setMap(map);
     autocompleteInit();
+
+
+    const controlDiv = document.createElement('div');
+    createCustomControl(controlDiv, map);
+    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(controlDiv);
 }
+
+function createCustomControl(controlDiv, map) {
+    // Настройки для контейнера кнопки
+    const controlUI = document.createElement('div');
+    controlUI.className = 'custom-map-control';
+    controlDiv.appendChild(controlUI);
+  
+    // Настройки для текстовой части кнопки
+    const controlText = document.createElement('div');
+    controlText.innerHTML = 'Satellite';
+    controlUI.appendChild(controlText);
+  
+    // Обработчик события на клик по кнопке
+    controlUI.addEventListener('click', () => {
+      const currentType = map.getMapTypeId();
+      if (currentType === 'roadmap') {
+        map.setMapTypeId('satellite');
+        controlText.innerHTML = 'Roadmap';
+      } else {
+        map.setMapTypeId('roadmap');
+        controlText.innerHTML = 'Satellite';
+      }
+    });
+  }
 
 // Функція автозаповнення для стандартного поля
 function autocompleteInit() {
