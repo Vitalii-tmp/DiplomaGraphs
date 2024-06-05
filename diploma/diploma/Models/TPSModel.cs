@@ -1,14 +1,15 @@
-﻿using diploma.Models;
-using Microsoft.AspNetCore.Mvc;
-using System;
+﻿
+using diploma.Controllers;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-
-namespace diploma.Controllers
+namespace diploma.Models
 {
-    // Клас для обчислення TSP
-    public class TSPSolver
+    public interface ITSPSolverService
+    {
+        Task<List<AddressCoordinatesPair>> FindShortestPathAsync(List<AddressCoordinatesPair> addressCoordinatesPairs);
+    }
+
+    public class TSPSolverService : ITSPSolverService
     {
         private List<AddressCoordinatesPair> addressCoordinatesPairs;
         private int numPoints;
@@ -16,11 +17,25 @@ namespace diploma.Controllers
         private double bestCost;
         private List<int> bestPath;
 
-        public TSPSolver(List<AddressCoordinatesPair> addressCoordinatesPairs)
+        public async Task<List<AddressCoordinatesPair>> FindShortestPathAsync(List<AddressCoordinatesPair> addressCoordinatesPairs)
         {
             this.addressCoordinatesPairs = addressCoordinatesPairs;
             this.numPoints = addressCoordinatesPairs.Count;
             this.distanceMatrix = new double[numPoints, numPoints];
+
+            bestCost = double.MaxValue;
+            bestPath = new List<int>();
+
+            await CalculateDistanceMatrixAsync();
+
+            List<int> currentPath = new List<int> { 0 };
+            bool[] visited = new bool[numPoints];
+            visited[0] = true;
+
+            BranchAndBound(currentPath, visited, 0);
+
+            // Повертаємо оптимальний маршрут в форматі адрес-координат
+            return bestPath.Select(index => addressCoordinatesPairs[index]).ToList();
         }
 
         // Рахуємо матрицю відстаней, використовуючи адреси-координати
@@ -41,30 +56,13 @@ namespace diploma.Controllers
                         int iCopy = i, jCopy = j;
                         tasks.Add(Task.Run(async () =>
                         {
-                            distanceMatrix[iCopy, jCopy] = await DistanceController.GetDistanceByRoadAsync(addressCoordinatesPairs[iCopy].Coordinates, addressCoordinatesPairs[jCopy].Coordinates);
+                            distanceMatrix[iCopy, jCopy] = await DistanceService.GetDistanceByRoadAsync(addressCoordinatesPairs[iCopy].Coordinates, addressCoordinatesPairs[jCopy].Coordinates);
                         }));
                     }
                 }
             }
 
             await Task.WhenAll(tasks);
-        }
-
-        public async Task<List<AddressCoordinatesPair>> FindShortestPathAsync()
-        {
-            bestCost = double.MaxValue;
-            bestPath = new List<int>();
-
-            await CalculateDistanceMatrixAsync();
-
-            List<int> currentPath = new List<int> { 0 };
-            bool[] visited = new bool[numPoints];
-            visited[0] = true;
-
-            BranchAndBound(currentPath, visited, 0);
-
-            // Повертаємо оптимальний маршрут в форматі адрес-координат
-            return bestPath.Select(index => addressCoordinatesPairs[index]).ToList();
         }
 
         private void BranchAndBound(List<int> currentPath, bool[] visited, double currentCost)
@@ -97,5 +95,4 @@ namespace diploma.Controllers
             }
         }
     }
-
 }

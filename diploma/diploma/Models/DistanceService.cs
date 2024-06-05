@@ -1,9 +1,8 @@
-﻿using diploma.Models;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
 
-namespace diploma.Controllers
+namespace diploma.Models
 {
-    static public class DistanceController
+    public static class DistanceService
     {
 
         public static double GetDistance(CoordinatesModel coord1, CoordinatesModel coord2)
@@ -48,6 +47,6 @@ namespace diploma.Controllers
             }
         }
 
-      
+
     }
 }

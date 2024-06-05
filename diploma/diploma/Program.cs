@@ -1,7 +1,12 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿using diploma.Models;
+
+var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IAddressService, AddressService>();
+builder.Services.AddScoped<ICoordinatesService, CoordinatesService>();
+builder.Services.AddScoped<ITSPSolverService, TSPSolverService>();
 
 // Configure logging
 builder.Logging.ClearProviders();
