@@ -49,25 +49,22 @@ $(document).on('blur', '.search-input', function () {
 
 
 //Додавання ще одного інпуту
-$('.add-route-point-btn').click(function (e) {
+$('.add-point-btn').click(function (e) {
     e.preventDefault();
     const itemCount = $('.route-builder-item').length;
 
     //10 елементів макс
     if (itemCount < 10) {
-        const container = document.querySelector('.route-builder-items-container');
+        const container = document.querySelector('.inputs');
         const newItem = document.createElement('div');
         newItem.className = 'route-builder-item';
         newItem.innerHTML = `
-          <i class="fa-solid fa-map-pin"></i>
-            <div class="input-block">
-                <input type="text" placeholder="Search place" class="search-input">
-            </div>
-            <button class="delete-point-btn"><i class="fa-regular fa-circle-xmark"></i></button>
+        <span>-></span>
+        <input placeholder="Сhoose the starting point" type="text" autocomplete="off">
         `;
         container.appendChild(newItem);
-        // Ініціалізація автозаповнення для новододаного інпуту
-        rb_autocompleteInit(newItem.querySelector('.search-input'));
+        // // Ініціалізація автозаповнення для новододаного інпуту
+        // rb_autocompleteInit(newItem.querySelector('.search-input'));
 
     } else {
         alert('Вы можете добавить не более 10 пунктов.');
@@ -178,4 +175,29 @@ $(document).ready(function () {
         var inputValue = $('#searchInput').val(); // Отримання значення поля вводу
         $('.route-builder .search-input:first').val(inputValue);
     });
+});
+
+// $(document).on('focus', '#start-point', function () {
+//     console.log('Input is focused');
+//     $('.rb-suggestions').toggleClass('rb-suggestions-active');
+// });
+
+$(document).on('focus', '#startPoint', function () {
+    console.log('Input is focused');
+    if ($('#startPoint').val() === '') {
+        $('.info').toggleClass('info-active');
+    }
+    $('.info').html('<h1>Build a route:</h1><p></p>');
+    
+});
+
+$('#startPoint').on('blur', function () {
+    setTimeout(function () {
+        // Перевірка, чи не є поле вводу порожнім перед зміною вмісту div.info
+        if ($('#startPoint').val() === '') {
+            $('.info').toggleClass('info-active');
+           $('.info').html('<span><img src="img/icon1_black.svg" alt="Icon"></span><h1>BriskRoute</h1><p>The fastest way to deliver your packages.</p>');
+            
+        }
+    }, 100);
 });

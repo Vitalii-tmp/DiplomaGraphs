@@ -10,7 +10,7 @@ namespace diploma.Models
         public double Longitude { get; set; }
     }
 
-    
+
 
     public interface ICoordinatesService
     {
