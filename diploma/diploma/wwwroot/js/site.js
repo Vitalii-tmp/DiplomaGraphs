@@ -1,81 +1,36 @@
-﻿//Поява миню при натичканні на кнопку
-$('.menu-btn').on('click', function (e) {
-    e.preventDefault();
-    $('.menu').toggleClass('menu-active');
-    $('.overlay').toggleClass('overlay-active');
-})
+﻿
 
-//Ховання мен. при натисканні на кнопку
-$('.close-menu-btn').on('click', function (e) {
-    e.preventDefault();
-    $('.menu').toggleClass('menu-active');
-    $('.overlay').toggleClass('overlay-active');
-
-})
-
-//Ховання мен. при натисканні на оверлей
-$('.overlay').click(function () {
-    $('.overlay').toggleClass('overlay-active');
-    $('.menu').toggleClass('menu-active');
-});
-
-// Показуємо підскахки при фокусі інпута в sb
-$('#searchInput').on('focus', function () {
-    console.log('Input is focused');
-    $('.sb-suggestions').toggleClass('sb-suggestions-active');
-});
-
-// Ховаємо підсказки в sb
-$('#searchInput').on('blur', function () {
-    setTimeout(function () {
-        $('.sb-suggestions').toggleClass('sb-suggestions-active');
-    }, 200);
-});
-
-// Показуємо підскахки при фокусі інпута в rb
-$(document).on('focus', '.search-input', function () {
-    console.log('Input is focused');
-    $('.rb-suggestions').toggleClass('rb-suggestions-active');
-});
-
-// Ховаємо підсказки в rb
-$(document).on('blur', '.search-input', function () {
-    console.log('Input is blurred');
-    var $rbSuggestions = $(this).next('.rb-suggestions');
-    setTimeout(function () {
-        $('.rb-suggestions').toggleClass('rb-suggestions-active');
-    }, 200);
-});
-
-
-//Додавання ще одного інпуту
+// Додавання ще одного інпуту
 $('.add-point-btn').click(function (e) {
     e.preventDefault();
     const itemCount = $('.route-builder-item').length;
 
-    //10 елементів макс
+    // 10 елементів макс
     if (itemCount < 10) {
         const container = document.querySelector('.inputs');
         const newItem = document.createElement('div');
         newItem.className = 'route-builder-item';
         newItem.innerHTML = `
-        <span>-></span>
-        <input placeholder="Сhoose the starting point" type="text" autocomplete="off">
+        <div class="route-builder-item-input-box">
+            <span>-></span>
+            <input class="search-input" placeholder="Add a destination" type="text" class="route-input" autocomplete="off">
+        </div>
+        <ul class="sb-suggestions">
+            <li>Вводьте адресу а я вам допоможу)))</li>
+        </ul>
         `;
         container.appendChild(newItem);
-        // // Ініціалізація автозаповнення для новододаного інпуту
-        // rb_autocompleteInit(newItem.querySelector('.search-input'));
-
+        
+        // Ініціалізація автозаповнення для новододаного інпуту
+        var input = newItem.querySelector('input');
+        var suggestionsList = newItem.querySelector('.sb-suggestions');
+        rb_autocompleteInit(input, suggestionsList );
     } else {
         alert('Вы можете добавить не более 10 пунктов.');
     }
 });
 
-// Обробник для видалення полів вводу
-$('.route-builder-items-container').on('click', '.delete-point-btn', function (e) {
-    e.preventDefault();
-    $(this).closest('.route-builder-item').remove();
-});
+
 
 //Функція при натисканні на "BUILD ROUTE"
 $('.build-route-btn').click(function () {
@@ -151,31 +106,9 @@ function sendRouteData(routePoints) {
     });
 }
 
-$('.route-builder-close-btn').click(function (e) {
-    e.preventDefault();
-    $('.route-builder').toggleClass('route-builder-active');
-});
 
 
 //При натисканні ENTER or search присвоюємо значення sb для першойо інпуту rb
-
-$(document).ready(function () {
-    // Додаємо обробник події для першого поля вводу
-    $('.search-box-input').keydown(function (event) {
-        if (event.key === 'Enter') {
-            event.preventDefault();
-            var inputValue = $('#searchInput').val(); // Отримання значення поля вводу
-            $('.route-builder .search-input:first').val(inputValue);
-        }
-    });
-
-    // Обробник події click для кнопки пошуку
-    $('.search-box-btn').click(function (e) {
-        e.preventDefault();
-        var inputValue = $('#searchInput').val(); // Отримання значення поля вводу
-        $('.route-builder .search-input:first').val(inputValue);
-    });
-});
 
 // $(document).on('focus', '#start-point', function () {
 //     console.log('Input is focused');
@@ -188,16 +121,50 @@ $(document).on('focus', '#startPoint', function () {
         $('.info').toggleClass('info-active');
     }
     $('.info').html('<h1>Build a route:</h1><p></p>');
-    
 });
 
-$('#startPoint').on('blur', function () {
+$(document).on('input', '#startPoint', function () {
+    if ($(this).val() !== '') {
+        $('.info').html('<h1>Build a route:</h1><p></p>');
+        $(this).closest('.route-builder-item').find('.sb-suggestions').addClass('show');
+    } else {
+        $(this).closest('.route-builder-item').find('.sb-suggestions').removeClass('show');
+    }
+});
+
+$(document).on('blur', '#startPoint', function () {
+    var $this = $(this);
+
     setTimeout(function () {
-        // Перевірка, чи не є поле вводу порожнім перед зміною вмісту div.info
         if ($('#startPoint').val() === '') {
             $('.info').toggleClass('info-active');
-           $('.info').html('<span><img src="img/icon1_black.svg" alt="Icon"></span><h1>BriskRoute</h1><p>The fastest way to deliver your packages.</p>');
-            
+            $('.info').html('<span><img src="img/icon1_black.svg" alt="Icon"></span><h1>BriskRoute</h1><p>The fastest way to deliver your packages.</p>');
         }
+        $this.closest('.route-builder-item').find('.sb-suggestions').removeClass('show');
     }, 100);
 });
+
+$(document).on('input', '.search-input', function () {
+    if ($(this).val() !== '') {
+        $(this).closest('.route-builder-item').find('.sb-suggestions').addClass('show');
+    } else {
+        $(this).closest('.route-builder-item').find('.sb-suggestions').removeClass('show');
+    }
+});
+
+$(document).on('focus', '.search-input', function () {
+    if ($(this).val() !== '') {
+        $(this).closest('.route-builder-item').find('.sb-suggestions').addClass('show');
+    } else {
+        $(this).closest('.route-builder-item').find('.sb-suggestions').removeClass('show');
+    }
+});
+
+$(document).on('blur', '.search-input', function () {
+    var $this = $(this);
+
+    setTimeout(function () {
+        $this.closest('.route-builder-item').find('.sb-suggestions').removeClass('show');
+    }, 100);
+});
+

@@ -29,10 +29,6 @@ function initMap() {
         fullscreenControl: false
     });
 
-    // Ініціалізація автозаповнення для всіх існуючих полів
-    document.querySelectorAll('.search-input').forEach(function (input) {
-        rb_autocompleteInit(input);
-    });
     // Ініціалізація DirectionsRenderer один раз
     // Ініціалізація DirectionsRenderer
     directionsRenderer = new google.maps.DirectionsRenderer({
@@ -48,8 +44,7 @@ function initMap() {
     //   trafficLayer = new google.maps.TrafficLayer();
     //   trafficLayer.setMap(map);
     autocompleteInit();
-
-
+    autocompleteInitForSecondPoint();
     const controlDiv = document.createElement('div');
     createCustomControl(controlDiv, map);
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(controlDiv);
@@ -82,13 +77,14 @@ function createCustomControl(controlDiv, map) {
 // Функція автозаповнення для стандартного поля
 function autocompleteInit() {
     var autocompleteService = new google.maps.places.AutocompleteService();
-    var input = document.getElementById('searchInput');
-    var suggestionsList = document.getElementById('sb-suggestions');
+    var input = document.getElementById('startPoint');
+    var routeBuilderItem = input.closest('.route-builder-item');
+    var suggestionsList = routeBuilderItem.querySelector('.sb-suggestions');
 
-    input.addEventListener('input', function () {
-        var query = input.value;
-
-        // Виклик автозаповнення
+    input.addEventListener('input', function () {   
+        var query = input.value;    
+        
+        // Виклик автозаповнення    
         autocompleteService.getPlacePredictions({ input: query, types: ['geocode', 'establishment'] }, function (predictions, status) {
             if (status === google.maps.places.PlacesServiceStatus.OK) {
                 // Очищення попередніх підказок
@@ -104,9 +100,9 @@ function autocompleteInit() {
                     listItem.addEventListener('click', function () {
                         input.value = prediction.description;
                         searchPlace(input.value);
-                        $('.route-builder').toggleClass('route-builder-active');
-                        var inputValue = $('#searchInput').val(); // Отримання значення поля вводу
-                        $('.route-builder .search-input:first').val(inputValue);
+                        document.querySelector('.route-builder').classList.toggle('route-builder-active');
+                        var inputValue = document.getElementById('startPoint').value; // Отримання значення поля вводу
+                        document.querySelector('.route-builder #startPoint').value = inputValue;
                     });
                 });
             } else {
@@ -119,16 +115,16 @@ function autocompleteInit() {
         });
     });
 }
-
-// Функція автозаповнення для динамічних полів
-function rb_autocompleteInit(input) {
+function autocompleteInitForSecondPoint() {
     var autocompleteService = new google.maps.places.AutocompleteService();
-    var suggestionsList = document.querySelector('.rb-suggestions');
+    var input = document.getElementById('finishPoint');
+    var routeBuilderItem = input.closest('.route-builder-item');
+    var suggestionsList = routeBuilderItem.querySelector('.sb-suggestions');
 
-    input.addEventListener('input', function () {
-        var query = input.value;
-
-        // Виклик автозаповнення
+    input.addEventListener('input', function () {   
+        var query = input.value;    
+        
+        // Виклик автозаповнення    
         autocompleteService.getPlacePredictions({ input: query, types: ['geocode', 'establishment'] }, function (predictions, status) {
             if (status === google.maps.places.PlacesServiceStatus.OK) {
                 // Очищення попередніх підказок
@@ -140,6 +136,7 @@ function rb_autocompleteInit(input) {
                     listItem.textContent = prediction.description;
                     suggestionsList.appendChild(listItem);
 
+                    // Обробник кліка для вибору підказки
                     // Обробник кліка для вибору підказки
                     listItem.addEventListener('click', function () {
                         input.value = prediction.description;
@@ -153,6 +150,43 @@ function rb_autocompleteInit(input) {
                 var notFoundItem = document.createElement('li');
                 notFoundItem.textContent = "Не знайдено";
                 suggestionsList.appendChild(notFoundItem);
+            }
+        });
+    });
+}
+
+
+function rb_autocompleteInit(input, suggestions) {
+    var autocompleteService = new google.maps.places.AutocompleteService();
+
+    input.addEventListener('input', function () {
+        var query = input.value;
+
+        // Виклик автозаповнення
+        autocompleteService.getPlacePredictions({ input: query, types: ['geocode', 'establishment'] }, function (predictions, status) {
+            if (status === google.maps.places.PlacesServiceStatus.OK) {
+                // Очищення попередніх підказок
+                suggestions.innerHTML = '';
+
+                // Створення нових підказок і додавання їх до списку
+                predictions.forEach(function (prediction) {
+                    var listItem = document.createElement('li');
+                    listItem.textContent = prediction.description;
+                    suggestions.appendChild(listItem);
+
+                    // Обробник кліка для вибору підказки
+                    listItem.addEventListener('click', function () {
+                        input.value = prediction.description;
+                        searchPlace(input.value);
+                        suggestions.innerHTML = '';
+                    });
+                });
+            } else {
+                // Якщо немає підказок, відображаємо повідомлення
+                suggestions.innerHTML = '';
+                var notFoundItem = document.createElement('li');
+                notFoundItem.textContent = "Не знайдено";
+                suggestions.appendChild(notFoundItem);
             }
         });
     });
@@ -222,26 +256,26 @@ function searchPlace(address) {
 
 }
 
-//При натисканні ENTER or search 
-$(document).ready(function () {
-    // Обробник події keydown для стандартного поля вводу
-    $('.search-box-input').keydown(function (event) {
-        if (event.key === 'Enter') {
-            event.preventDefault();
-            var inputValue = $('#searchInput').val(); // Отримання значення поля вводу
-            searchPlace(inputValue);
-            $('.route-builder').toggleClass('route-builder-active');
-        }
-    });
+// //При натисканні ENTER or search 
+// $(document).ready(function () {
+//     // Обробник події keydown для стандартного поля вводу
+//     $('.search-box-input').keydown(function (event) {
+//         if (event.key === 'Enter') {
+//             event.preventDefault();
+//             var inputValue = $('#searchInput').val(); // Отримання значення поля вводу
+//             searchPlace(inputValue);
+//             $('.route-builder').toggleClass('route-builder-active');
+//         }
+//     });
 
-    // Обробник події click для кнопки пошуку
-    $('.search-box-btn').click(function (e) {
-        e.preventDefault();
-        var inputValue = $('#searchInput').val(); // Отримання значення поля вводу
-        searchPlace(inputValue);
-        $('.route-builder').toggleClass('route-builder-active');
-    });
-});
+//     // Обробник події click для кнопки пошуку
+//     $('.search-box-btn').click(function (e) {
+//         e.preventDefault();
+//         var inputValue = $('#searchInput').val(); // Отримання значення поля вводу
+//         searchPlace(inputValue);
+//         $('.route-builder').toggleClass('route-builder-active');
+//     });
+// });
 
 
 

@@ -42,25 +42,38 @@
 
         <div class="main-wrapper">
             <div class="main-wrapper-content">
-                
+
                 <div class="info">
                     <span><img src="img/icon1_black.svg" alt="Icon"></span>
                     <h1>BriskRoute</h1>
                     <p>The fastest way to deliver your packages.</p>
                 </div>
-                
+
                 <div class="route-builder">
 
                     <div class="route-builder-content">
                         <div class="inputs">
-                            <div class="route-builder-item" >
-                                <span>-></span>
-                                <input placeholder="Сhoose the starting point" type="text" id="startPoint" autocomplete="off">
+                            <div class="route-builder-item">
+                                <div class="route-builder-item-input-box">
+                                    <span>-></span>
+                                    <input class="search-input" placeholder="Сhoose the starting point" type="text" id="startPoint"  autocomplete="off">
+                                </div>
+                                
+                                <ul class="sb-suggestions">
+                                    <li>Вводьте адресу а я вам допоможу)))</li>
+                                </ul>
                             </div>
 
                             <div class="route-builder-item">
-                                <span>-></span>
-                                <input placeholder="Add a destination" type="text" autocomplete="off">
+                                <div class="route-builder-item-input-box">
+                                    <span>-></span>
+                                    <input class="search-input" id="finishPoint" placeholder="Add a destination" type="text" autocomplete="off">
+                                </div>
+
+                                <ul class="sb-suggestions">
+                                    <li>Вводьте адресу а я вам допоможу)))</li>
+                                </ul>
+                                
                             </div>
                         </div>
 
@@ -77,7 +90,7 @@
             </div>
         </div>
 
-        
+
         <div class="main">
             @RenderBody()
         </div>
