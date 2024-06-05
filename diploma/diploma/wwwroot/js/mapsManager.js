@@ -132,9 +132,12 @@ function autocompleteInitForSecondPoint() {
 
                 // Створення нових підказок і додавання їх до списку
                 predictions.forEach(function (prediction) {
+                    
                     var listItem = document.createElement('li');
                     listItem.textContent = prediction.description;
                     suggestionsList.appendChild(listItem);
+                    var hr = document.createElement('hr');
+                    suggestionsList.appendChild(hr);
 
                     // Обробник кліка для вибору підказки
                     // Обробник кліка для вибору підказки

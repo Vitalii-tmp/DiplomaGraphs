@@ -383,9 +383,6 @@ body, html {
         color: #ffff;
     }
 
-
-
-
     .sb-suggestions {
         opacity: 0;
         max-height: 0;
@@ -398,10 +395,37 @@ body, html {
 
     .sb-suggestions.show {
         opacity: 1;
-        max-height: 200px; /* або інше значення, що підходить для вашого контенту */
+        max-height: 160px; /* або інше значення, що підходить для вашого контенту */
     }
 
+    .sb-suggestions hr{
+        padding: 0;
+        margin: 0;
+        margin-left: 46px;
+        margin-right: 46px;
+        height: 1px;
+        color:#B9C1AC;        ;
+    }
+    .sb-suggestions li {
+        padding-bottom: 10px;
+        padding-top: 10px;
+        padding-left: 48px;
+        padding-right: 10px;
+        text-align: left;
+        color: #808778;
 
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 19.36px;
+        text-align: left;
+        overflow: hidden;
+        white-space: nowrap;
+
+    }
+    .sb-suggestions li:hover {
+        background-color: #00000019;
+        transition: 0.5s;
+    }
 
 
 
