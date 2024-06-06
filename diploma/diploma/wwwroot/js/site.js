@@ -22,9 +22,10 @@ $('.add-point-btn').click(function (e) {
         container.appendChild(newItem);
         
         // Ініціалізація автозаповнення для новододаного інпуту
-        var input = newItem.querySelector('input');
+        var input = newItem.querySelector('.search-input');
         var suggestionsList = newItem.querySelector('.sb-suggestions');
-        rb_autocompleteInit(input, suggestionsList );
+        rb_autocompleteInit(input, suggestionsList);
+
     } else {
         alert('Вы можете добавить не более 10 пунктов.');
     }
@@ -107,14 +108,9 @@ function sendRouteData(routePoints) {
 }
 
 
+// -- ПІДСКАЗКИ --
 
-//При натисканні ENTER or search присвоюємо значення sb для першойо інпуту rb
-
-// $(document).on('focus', '#start-point', function () {
-//     console.log('Input is focused');
-//     $('.rb-suggestions').toggleClass('rb-suggestions-active');
-// });
-
+// Якщо в фокусі перше меню міняємо напис зверху
 $(document).on('focus', '#startPoint', function () {
     console.log('Input is focused');
     if ($('#startPoint').val() === '') {
@@ -123,15 +119,15 @@ $(document).on('focus', '#startPoint', function () {
     $('.info').html('<h1>Build a route:</h1><p></p>');
 });
 
+// Показуємо підсказки якщо користувач щось пише а ні то видаляємо для #startPoint
 $(document).on('input', '#startPoint', function () {
     if ($(this).val() !== '') {
         $('.info').html('<h1>Build a route:</h1><p></p>');
-        $(this).closest('.route-builder-item').find('.sb-suggestions').addClass('show');
-    } else {
-        $(this).closest('.route-builder-item').find('.sb-suggestions').removeClass('show');
     }
+    $(this).closest('.route-builder-item').find('.sb-suggestions').toggleClass('show', $(this).val() !== '');
 });
 
+// Коли користувач не на інпуті видаляємо підсказки та оновлюємо .info для #startPoint
 $(document).on('blur', '#startPoint', function () {
     var $this = $(this);
 
@@ -144,27 +140,22 @@ $(document).on('blur', '#startPoint', function () {
     }, 100);
 });
 
+// Показуємо підсказки якщо користувач щось пише а ні то видаляємо для всіх .search-input
 $(document).on('input', '.search-input', function () {
-    if ($(this).val() !== '') {
-        $(this).closest('.route-builder-item').find('.sb-suggestions').addClass('show');
-    } else {
-        $(this).closest('.route-builder-item').find('.sb-suggestions').removeClass('show');
-    }
+    $(this).closest('.route-builder-item').find('.sb-suggestions').toggleClass('show', $(this).val() !== '');
 });
 
-$(document).on('focus', '.search-input', function () {
-    if ($(this).val() !== '') {
-        $(this).closest('.route-builder-item').find('.sb-suggestions').addClass('show');
-    } else {
-        $(this).closest('.route-builder-item').find('.sb-suggestions').removeClass('show');
-    }
-});
-
+// Коли користувач не на інпуті видаляємо підсказки для всіх .search-input
 $(document).on('blur', '.search-input', function () {
     var $this = $(this);
-
     setTimeout(function () {
         $this.closest('.route-builder-item').find('.sb-suggestions').removeClass('show');
     }, 100);
 });
+
+// Показуємо підсказки якщо користувач фокусує поле, для всіх .search-input
+$(document).on('focus', '.search-input', function () {
+    $(this).closest('.route-builder-item').find('.sb-suggestions').toggleClass('show', $(this).val() !== '');
+});
+
 
