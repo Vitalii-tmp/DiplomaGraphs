@@ -680,6 +680,12 @@ line-height: 25.41px;
 text-align: left;
 margin-left: 10px;
 color: #121212;
+
+width: 336px;
+height: 25px;
+white-space: nowrap;      /* Забороняє перенос тексту */
+    overflow: hidden;         /* Обрізає текст, який виходить за межі контейнера */
+    text-overflow: ellipsis;  /* Додає три крапки в кінці обрізаного тексту */
 }
 
 

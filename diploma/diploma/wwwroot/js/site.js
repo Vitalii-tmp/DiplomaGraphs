@@ -6,7 +6,7 @@ $('.add-point-btn').click(function (e) {
     const itemCount = $('.route-builder-item').length;
 
     // 10 елементів макс
-    if (itemCount < 10) {
+    if (itemCount < 8) {
         const container = document.querySelector('.inputs');
         const newItem = document.createElement('div');
         newItem.className = 'route-builder-item';
@@ -78,32 +78,43 @@ function sendRouteData(routePoints) {
             // alert('Маршрут побудовано успішно:');
             switchMap();
 
-            // // Построение маршрута на карте
-            // // drawRoute(convertCoordinates(response));
-            // //
-            // const coordinates = response.map(pair => pair.coordinates);
-            // console.log(coordinates);
 
             var coordsList = [];  // Ініціалізація як порожнього масиву
+            let stopsAddresses = [];
             for (let i = 0; i < response.length; i++) {
                 const pair = response[i];
                 if (pair && pair.address && pair.coordinates) {
-                  
                     coordsList.push(pair.coordinates);
+                    stopsAddresses.push(pair.address.address);
                 }
             }
             
             drawMultiColoredRoute(convertCoordinates(coordsList), colors, map);
 
+
+            //перезаписуємо поля попорядку щоб були
             const inputs = document.querySelectorAll('.search-input');
             
-            // Перебираємо інпути і зберігаємо їх значення в масив
-            
-
             for (let i = 0; i < inputs.length; i++) {
                 inputs[i].value = response[i].address.address;
             }
 
+            //записуємо значення в список зупинок
+            document.querySelector('.stops-nums').textContent= '0' + stopsAddresses.length + ' stops';
+            const stopPointInfoItems = document.querySelectorAll('.full-info ul li');
+            for (let i = 0; i < stopPointInfoItems.length; i++) {
+                if (i < stopsAddresses.length) {
+                var itemNumber = stopPointInfoItems[i].querySelector('span').textContent;
+                var itemText = stopsAddresses[i]; 
+
+                stopPointInfoItems[i].querySelector('p').textContent= itemText;
+                stopPointInfoItems[i].querySelector('span').textContent= itemNumber;
+                }
+                else{
+                    stopPointInfoItems[i].querySelector('p').textContent= '';
+                    stopPointInfoItems[i].querySelector('span').textContent= '';
+                }
+            }
             
 
         },

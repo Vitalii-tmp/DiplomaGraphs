@@ -18,6 +18,8 @@ var directionsRenderer;
 const directionsRenderers = [];
 let trafficLayer;
 
+
+
 // Ініціалізація карти
 function initMap() {
     // Створення карти, центрованої на заданих координатах (Сідней, Австралія)
@@ -57,29 +59,6 @@ function initMap() {
     // switchMap();
 }
 
-function createCustomControl(controlDiv, map) {
-    // Настройки для контейнера кнопки
-    const controlUI = document.createElement('div');
-    controlUI.className = 'custom-map-control';
-    controlDiv.appendChild(controlUI);
-  
-    // Настройки для текстовой части кнопки
-    const controlText = document.createElement('div');
-    controlText.innerHTML = 'Satellite';
-    controlUI.appendChild(controlText);
-  
-    // Обработчик события на клик по кнопке
-    controlUI.addEventListener('click', () => {
-      const currentType = map.getMapTypeId();
-      if (currentType === 'roadmap') {
-        map.setMapTypeId('satellite');
-        controlText.innerHTML = 'Roadmap';
-      } else {
-        map.setMapTypeId('roadmap');
-        controlText.innerHTML = 'Satellite';
-      }
-    });
-  }
 
 // Функція автозаповнення для стандартного поля
 function autocompleteInit() {
@@ -121,6 +100,7 @@ function autocompleteInit() {
     });
 }
 
+// Функція автозаповнення для створених полів
 
 function rb_autocompleteInit(input, suggestions) {
     var autocompleteService = new google.maps.places.AutocompleteService();
@@ -158,8 +138,6 @@ function rb_autocompleteInit(input, suggestions) {
         });
     });
 }
-
-
 
 // Функція пошуку місця
 function searchPlace(address) {
@@ -222,8 +200,6 @@ function searchPlace(address) {
     }
 
 }
-
-
 
 // Функція для збереження координат ТЕСТ AJAX
 function saveCoordinates(latitude, longitude) {
