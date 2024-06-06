@@ -42,9 +42,15 @@ $('.build-route-btn').click(function () {
         console.log($(this).val());
     });
 
+    
     // Виклик методу ajax для відправки запиту на бекенд
     sendRouteData(routePoints);
 });
+
+function switchMap(){
+    $('.main-wrapper').toggleClass("main-wrapper-hide")
+    $('.main').toggleClass("main-active")
+}
 
 // Конвертування списку координат для Google Maps API
 function convertCoordinates(coordinatesList) {
@@ -69,7 +75,8 @@ function sendRouteData(routePoints) {
         success: function (response) {
             // Обробка успішної відповіді
             console.log('Маршрут побудовано успішно:', response);
-            alert('Маршрут побудовано успішно:');
+            // alert('Маршрут побудовано успішно:');
+            switchMap();
 
             // // Построение маршрута на карте
             // // drawRoute(convertCoordinates(response));
@@ -97,6 +104,7 @@ function sendRouteData(routePoints) {
                 inputs[i].value = response[i].address.address;
             }
 
+            
 
         },
         error: function (error) {
@@ -159,3 +167,22 @@ $(document).on('focus', '.search-input', function () {
 });
 
 
+$(document).on('click', '#back-to-main-btn', function () {
+    switchMap();
+});
+
+// --FULL INFO (STOPS)-- //
+$(document).ready(function() {
+    $('#viewDetailsBtn').on('click', function(event) {
+        event.preventDefault(); // запобігає переходу за посиланням
+        $('.full-route-details-container').toggleClass('full-route-details-container-active');
+
+        // Тут можна додати додаткові дії, які потрібно виконати при натисканні
+        var $this = $(this);
+        if ($this.text() === 'View Details') {
+            $this.text('Hide');
+        } else {
+            $this.text('View Details');
+        }
+    });
+});

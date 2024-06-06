@@ -50,9 +50,11 @@ function initMap() {
     var suggestionsList = routeBuilderItem.querySelector('.sb-suggestions');
     rb_autocompleteInit(input,suggestionsList);
 
-    const controlDiv = document.createElement('div');
-    createCustomControl(controlDiv, map);
-    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(controlDiv);
+    // const controlDiv = document.createElement('div');
+    // createCustomControl(controlDiv, map);
+    // map.controls[google.maps.ControlPosition.TOP_RIGHT].push(controlDiv);
+
+    // switchMap();
 }
 
 function createCustomControl(controlDiv, map) {
@@ -336,6 +338,7 @@ function drawMultiColoredRoute(coords, colors, map) {
 
         drawRouteSegment(start, end, color, map, labelStart, labelEnd);
     }
+    
 }
 
 //видалення всіх маркерів
