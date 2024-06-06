@@ -12,12 +12,13 @@ $('.add-point-btn').click(function (e) {
         newItem.className = 'route-builder-item';
         newItem.innerHTML = `
         <div class="route-builder-item-input-box">
-            <span>-></span>
-            <input class="search-input" placeholder="Add a destination" type="text" class="route-input" autocomplete="off">
+             <span>-></span>
+            <input class="search-input" placeholder="Add a destination" type="text" id="finishPoint" autocomplete="off">
         </div>
-        <ul class="sb-suggestions">
-            <li>Вводьте адресу а я вам допоможу)))</li>
-        </ul>
+            <ul class="sb-suggestions">
+                <li>Вводьте адресу а я вам допоможу)))</li>
+            </ul>
+        <span class="delete-item-btn">+</span>
         `;
         container.appendChild(newItem);
         
@@ -31,6 +32,24 @@ $('.add-point-btn').click(function (e) {
     }
 });
 
+$(document).ready(function() {
+    // Додати обробник події до всіх існуючих кнопок видалення
+    $('.route-builder').on('click', '.delete-item-btn', function() {
+        // Видалити відповідний батьківський елемент route-builder-item
+        $(this).closest('.route-builder-item').remove();
+    });
+
+    // При наведенні на кнопку видалення
+    $('.route-builder').on('mouseenter', '.route-builder-item', function() {
+        $(this).find('.delete-item-btn').addClass('delete-item-btn-active');
+    });
+
+    // При виході миші з кнопки видалення
+    $('.route-builder').on('mouseleave', '.route-builder-item', function() {
+        $(this).find('.delete-item-btn').removeClass('delete-item-btn-active');
+    });
+
+});
 
 
 //Функція при натисканні на "BUILD ROUTE"

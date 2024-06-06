@@ -331,24 +331,22 @@ body, html {
     transition: .5s;
 }
 
-
 .route-builder .inputs .route-builder-item {
-    position: relative;
+    position: relative; /* Додано відносне позиціонування */
     width: 100%;
     height: 100%;
 }
 
     .route-builder .inputs .route-builder-item .route-builder-item-input-box {
         position: relative;
-        width: 100%;
+        width: 100%; /* Віднімання для врахування кнопки видалення */
         height: 55px;
         background-color: #D9E3CA;
         margin-top: 12px;
         border-radius: 8px;
-        padding: 18px 20px 18px 20px;
+        padding: 0 20px;
         display: flex;
         align-items: center;
-        justify-content: left;
         transition: .5s;
     }
 
@@ -358,21 +356,44 @@ body, html {
         font-size: 16px;
         font-weight: 500;
         line-height: 19.36px;
-        margin-right: 10px;
     }
 
-    .route-builder .inputs .route-builder-item input {
-        width: 90%;
+    .route-builder .inputs .route-builder-item .search-input {
+        flex-grow: 1;
         height: 19px;
         font-size: 16px;
         font-weight: 500;
         line-height: 19.36px;
-        margin-right: 10px;
+        margin: 0 10px;
         border: none;
         outline: none;
         background-color: #D9E3CA;
         color: #111210;
     }
+
+    .route-builder .inputs .route-builder-item .delete-item-btn {
+        position: absolute;
+        right: -26px; /* Відступ справа */
+        top: 26px; /* Вертикальне вирівнювання */
+        
+        width: 15px;
+        height: 15px;
+        font-size: 28px;
+        font-weight: 600;
+        line-height: 19.36px;
+        color: transparent;
+
+        cursor: pointer;
+
+        transform: rotateZ(45deg);
+    }
+
+    .route-builder .inputs .route-builder-item .delete-item-btn-active{
+        color: #808778;
+
+    }
+
+
 
 .route-builder .add-point-btn {
     text-decoration: none;
@@ -484,7 +505,6 @@ body, html {
     height: 100%;
     display: flex;
     justify-content: space-between;
-    
 }
 
     .map-container-actions .back-to-main-btn {
@@ -520,7 +540,7 @@ body, html {
         margin-top: auto;
     }
 
-    
+
 
     .map-container-actions .estimates-details-container {
         width: 430px;
@@ -530,7 +550,6 @@ body, html {
         background-color: var(--bg-color);
         display: flex;
         flex-direction: column;
-        
     }
 
         .map-container-actions .estimates-details-container p.title {
@@ -581,31 +600,30 @@ body, html {
     overflow: hidden;
 }
 
-.map-container-actions .full-route-details-container .full-info hr{
-    border-width: 3px;
-    color:#D9D9D9;
-}
+    .map-container-actions .full-route-details-container .full-info hr {
+        border-width: 3px;
+        color: #D9D9D9;
+    }
 
 .map-container-actions .full-route-details-container-active {
     height: 527px;
 }
 
-    .map-container-actions .full-route-details-container p.title {
-        width: 131px;
-        height: 19px;
-        margin-bottom: 10px;
-        font-size: 16px;
-        font-weight: 600;
-        line-height: 19.36px;
-        text-align: center;
-        margin: 0;
-        color: #121212;
-    }
+.map-container-actions .full-route-details-container p.title {
+    width: 131px;
+    height: 19px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19.36px;
+    text-align: center;
+    margin: 0;
+    color: #121212;
+}
 
 .full-route-details-container .full-route-details {
     display: flex;
     justify-content: space-between;
-    
 }
 
     .full-route-details-container .full-route-details p.stops-nums {
@@ -633,63 +651,58 @@ body, html {
     margin-top: 40px;
     padding: 28px 30px 28px 30px;
     border-radius: 24px;
-
     background-color: var(--bg-color);
-
 }
 
-.route-info-container .start-route-btn p{
-font-size: 24px;
-font-weight: 600;
-line-height: 29.05px;
-text-align: center;
-color: #FFFFFF;
-padding: 0;
-}
+    .route-info-container .start-route-btn p {
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 29.05px;
+        text-align: center;
+        color: #FFFFFF;
+        padding: 0;
+    }
 
 
-.full-info ul{
+.full-info ul {
     padding: 0;
     margin: 0;
 }
 
-.full-info ul li{
-    display: flex; 
-    width: 370px;
-    height: 25px;
-    margin-top: 12px;
-}
+    .full-info ul li {
+        display: flex;
+        width: 370px;
+        height: 25px;
+        margin-top: 12px;
+    }
 
-.full-info ul li span{
-    width: 24px;
-    height: 25px;
+        .full-info ul li span {
+            width: 24px;
+            height: 25px;
+            font-size: 21px;
+            font-weight: 500;
+            line-height: 25.41px;
+            text-align: center;
+            color: #888888;
+        }
 
-    font-size: 21px;
-    font-weight: 500;
-    line-height: 25.41px;
-    text-align: center;
-
-    color:#888888;
-
-}
-
-.full-info ul li p{
-font-size: 21px;
-font-weight: 500;
-line-height: 25.41px;
-text-align: left;
-margin-left: 10px;
-color: #121212;
-
-width: 336px;
-height: 25px;
-white-space: nowrap;      /* Забороняє перенос тексту */
-    overflow: hidden;         /* Обрізає текст, який виходить за межі контейнера */
-    text-overflow: ellipsis;  /* Додає три крапки в кінці обрізаного тексту */
-}
+        .full-info ul li p {
+            font-size: 21px;
+            font-weight: 500;
+            line-height: 25.41px;
+            text-align: left;
+            margin-left: 10px;
+            color: #121212;
+            width: 336px;
+            height: 25px;
+            white-space: nowrap; /* Забороняє перенос тексту */
+            overflow: hidden; /* Обрізає текст, який виходить за межі контейнера */
+            text-overflow: ellipsis; /* Додає три крапки в кінці обрізаного тексту */
+        }
 
 
 /* -- ROUTE BUILDED MAP */
+
 
 
 
