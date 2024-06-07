@@ -28,7 +28,7 @@ namespace diploma.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<List<AddressCoordinatesPair>>> SaveAddresses([FromBody] List<AddressModel> addresses)
+        public async Task<ActionResult<List<AddressCoordinatesPairModel>>> SaveAddresses([FromBody] List<AddressModel> addresses)
         {
             var addressCoordinatesPairs = await _addressService.GetAddressCoordinatesPairsAsync(addresses);
 

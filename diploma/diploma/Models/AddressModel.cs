@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
 
 namespace diploma.Models
 {
@@ -11,15 +12,18 @@ namespace diploma.Models
     }
 }
 
-public class AddressCoordinatesPair
+public class AddressCoordinatesPairModel
 {
     public AddressModel Address { get; set; }
     public CoordinatesModel Coordinates { get; set; }
+
+    //тут також повернемо відстань до наступної точки + час + сам маршрут
+
 }
 
 public interface IAddressService
 {
-    Task<AddressCoordinatesPair[]> GetAddressCoordinatesPairsAsync(List<AddressModel> addresses);
+    Task<AddressCoordinatesPairModel[]> GetAddressCoordinatesPairsAsync(List<AddressModel> addresses);
 }
 
 public class AddressService : IAddressService
@@ -31,12 +35,12 @@ public class AddressService : IAddressService
         _coordinatesService = coordinatesService;
     }
 
-    public async Task<AddressCoordinatesPair[]> GetAddressCoordinatesPairsAsync(List<AddressModel> addresses)
+    public async Task<AddressCoordinatesPairModel[]> GetAddressCoordinatesPairsAsync(List<AddressModel> addresses)
     {
         var tasks = addresses.Select(async address =>
         {
             var coordinates = await _coordinatesService.GetCoordinatesAsync(address.Address);
-            return new AddressCoordinatesPair
+            return new AddressCoordinatesPairModel
             {
                 Address = address,
                 Coordinates = coordinates

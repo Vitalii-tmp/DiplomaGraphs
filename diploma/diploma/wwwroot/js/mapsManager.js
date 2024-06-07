@@ -50,7 +50,9 @@ function initMap() {
     var input = document.getElementById('finishPoint');
     var routeBuilderItem = input.closest('.route-builder-item');
     var suggestionsList = routeBuilderItem.querySelector('.sb-suggestions');
-    rb_autocompleteInit(input,suggestionsList);
+
+    rb_autocompleteInit(input,suggestionsList, 'uk'); // Для української
+    rb_autocompleteInit(input,suggestionsList, 'en'); // Для англійської
 
     // const controlDiv = document.createElement('div');
     // createCustomControl(controlDiv, map);
@@ -102,14 +104,18 @@ function autocompleteInit() {
 
 // Функція автозаповнення для створених полів
 
-function rb_autocompleteInit(input, suggestions) {
+function rb_autocompleteInit(input, suggestions, lang) {
     var autocompleteService = new google.maps.places.AutocompleteService();
 
     input.addEventListener('input', function () {
         var query = input.value;
 
-        // Виклик автозаповнення
-        autocompleteService.getPlacePredictions({ input: query, types: ['geocode', 'establishment'] }, function (predictions, status) {
+        // Виклик автозаповнення з параметром мови
+        autocompleteService.getPlacePredictions({
+            input: query,
+            types: ['geocode', 'establishment'],
+            language: lang // Додаємо параметр мови
+        }, function (predictions, status) {
             if (status === google.maps.places.PlacesServiceStatus.OK) {
                 // Очищення попередніх підказок
                 suggestions.innerHTML = '';
@@ -126,7 +132,6 @@ function rb_autocompleteInit(input, suggestions) {
                         searchPlace(input.value);
                         // suggestions.innerHTML = '';
                     });
-
                 });
             } else {
                 // Якщо немає підказок, відображаємо повідомлення
@@ -138,6 +143,7 @@ function rb_autocompleteInit(input, suggestions) {
         });
     });
 }
+
 
 // Функція пошуку місця
 function searchPlace(address) {

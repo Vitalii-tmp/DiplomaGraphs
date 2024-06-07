@@ -46,7 +46,40 @@ namespace diploma.Models
                 }
             }
         }
+        public static async Task<double> GetShortestDistanceByRoadAsync(CoordinatesModel coord1, CoordinatesModel coord2)
+        {
+            var apiKey = "AIzaSyAdNqLjq5sBbA9n2dAJNFcLsKdhw50zerw";
+            var url = $"https://maps.googleapis.com/maps/api/directions/json?origin={coord1.Latitude},{coord1.Longitude}&destination={coord2.Latitude},{coord2.Longitude}&alternatives=true&key={apiKey}";
+
+            using (var client = new HttpClient())
+            {
+                var response = await client.GetStringAsync(url);
+                var json = JObject.Parse(response);
+
+                if (json["status"].ToString() == "OK")
+                {
+                    double shortestDistance = double.MaxValue;
+
+                    foreach (var route in json["routes"])
+                    {
+                        var distanceInMeters = route["legs"][0]["distance"]["value"].ToObject<double>();
+                        if (distanceInMeters < shortestDistance)
+                        {
+                            shortestDistance = distanceInMeters;
+                        }
+                    }
+
+                    // Відстань в км
+                    var distanceInKilometers = shortestDistance / 1000;
+                    return distanceInKilometers;
+                }
+                else
+                {
+                    throw new Exception($"API returned error status: {json["status"]}");
+                }
+            }
 
 
+        }
     }
 }

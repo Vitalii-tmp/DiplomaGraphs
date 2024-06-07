@@ -6,18 +6,18 @@ namespace diploma.Models
 {
     public interface ITSPSolverService
     {
-        Task<List<AddressCoordinatesPair>> FindShortestPathAsync(List<AddressCoordinatesPair> addressCoordinatesPairs);
+        Task<List<AddressCoordinatesPairModel>> FindShortestPathAsync(List<AddressCoordinatesPairModel> addressCoordinatesPairs);
     }
 
     public class TSPSolverService : ITSPSolverService
     {
-        private List<AddressCoordinatesPair> addressCoordinatesPairs;
+        private List<AddressCoordinatesPairModel> addressCoordinatesPairs;
         private int numPoints;
         private double[,] distanceMatrix;
         private double bestCost;
         private List<int> bestPath;
 
-        public async Task<List<AddressCoordinatesPair>> FindShortestPathAsync(List<AddressCoordinatesPair> addressCoordinatesPairs)
+        public async Task<List<AddressCoordinatesPairModel>> FindShortestPathAsync(List<AddressCoordinatesPairModel> addressCoordinatesPairs)
         {
             this.addressCoordinatesPairs = addressCoordinatesPairs;
             this.numPoints = addressCoordinatesPairs.Count;

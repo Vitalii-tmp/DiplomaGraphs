@@ -25,7 +25,9 @@ $('.add-point-btn').click(function (e) {
         // Ініціалізація автозаповнення для новододаного інпуту
         var input = newItem.querySelector('.search-input');
         var suggestionsList = newItem.querySelector('.sb-suggestions');
-        rb_autocompleteInit(input, suggestionsList);
+        
+        rb_autocompleteInit(input,suggestionsList, 'uk'); // Для української
+        rb_autocompleteInit(input,suggestionsList, 'en'); // Для англійської
 
     } else {
         alert('Вы можете добавить не более 10 пунктов.');
