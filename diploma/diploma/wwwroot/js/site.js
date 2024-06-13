@@ -5,7 +5,7 @@ $('.add-point-btn').click(function (e) {
     e.preventDefault();
     const itemCount = $('.route-builder-item').length;
 
-    // 10 елементів макс
+    // 8 елементів макс
     if (itemCount < 8) {
         const container = document.querySelector('.inputs');
         const newItem = document.createElement('div');
@@ -30,7 +30,7 @@ $('.add-point-btn').click(function (e) {
         rb_autocompleteInit(input,suggestionsList, 'en'); // Для англійської
 
     } else {
-        alert('Вы можете добавить не более 10 пунктов.');
+        alert('Sorry/ 8 stops max!)');
     }
 });
 

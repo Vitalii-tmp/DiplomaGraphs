@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "aqD6QuAwdUDufNazFNiD21P8Uo/9+DT0LoHei9ayz+I=",
+  "Hash": "66hiqGS/KMHoEhnXe3c+sAuQJgtIrv0ng75bKdTsSIE=",
   "Source": "diploma",
   "BasePath": "_content/diploma",
   "Mode": "Default",
@@ -53,6 +53,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\diploma.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\wwwroot\\css\\login.css",
+      "SourceId": "diploma",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\wwwroot\\",
+      "BasePath": "_content/diploma",
+      "RelativePath": "css/login.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\login.css"
     },
     {
       "Identity": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\wwwroot\\css\\site.css",

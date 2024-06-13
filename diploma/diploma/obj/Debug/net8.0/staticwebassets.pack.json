@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\diploma.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\wwwroot\\css\\login.css",
+      "PackagePath": "staticwebassets\\css\\login.css"
+    },
+    {
       "Id": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

@@ -18,7 +18,7 @@ public class AddressCoordinatesPairModel
     public CoordinatesModel Coordinates { get; set; }
 
     //тут також повернемо відстань до наступної точки + час + сам маршрут
-
+    public int distanceToNextPoint {get; set;}
 }
 
 public interface IAddressService

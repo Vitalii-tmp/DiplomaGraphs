@@ -2,35 +2,86 @@
     ViewData["Title"] = "BriskRoute";
 }
 
-<div class="map-container">
-    <div id="map"></div>
+<div class="main-wrapper">
+    <div class="main-wrapper-content">
 
+        <div class="info">
+            <span><img src="img/icon1_black.svg" alt="Icon"></span>
+            <h1>BriskRoute</h1>
+            <p>The fastest way to deliver your packages.</p>
+        </div>
 
-    <div class="map-container-actions">
-        <button class="back-to-main-btn" id="back-to-main-btn">
-            <p><- Back</p>
-        </button>
+        <div class="route-builder">
 
-        <div class="route-info-container">
-            <div class="estimates-details-container">
-                <p class="title">Estimated Distance and Time</p>
-                <div class="estimates-details">
-                    <p class="distance">12km</p>
-                    <p class="slesh">/</p>
-                    <p class="time">4 hours</p>
+            <div class="route-builder-content">
+                <div class="inputs">
+                    <div class="route-builder-item">
+                        <div class="route-builder-item-input-box">
+                            <span>-></span>
+                            <input class="search-input" placeholder="Сhoose the starting point" type="text" id="startPoint" autocomplete="off">
+                        </div>
+
+                        <ul class="sb-suggestions">
+                            <li>Вводьте адресу а я вам допоможу)))</li>
+                        </ul>
+                    </div>
+
+                    <div class="route-builder-item">
+                        <div class="route-builder-item-input-box">
+                            <span>-></span>
+                            <input class="search-input" placeholder="Add a destination" type="text" id="finishPoint" autocomplete="off">
+                        </div>
+                        <ul class="sb-suggestions">
+                            <li>Вводьте адресу а я вам допоможу)))</li>
+                        </ul>
+                    </div>
+
                 </div>
 
+
+                <a href="#" class="add-point-btn">+ Add another destination</a>
             </div>
 
 
-            <div class="full-route-details-container">
-                <p class="title">Number of Stops</p>
-                <div class="full-route-details">
-                    <p class="stops-nums">10 stops</p>
-                    <a href="#" id="viewDetailsBtn">View Details</a>
-                    
+            <button class="build-route-btn">
+                <p>Build a route-></p>
+            </button>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="main">
+    <div class="map-container">
+        <div id="map"></div>
+
+
+        <div class="map-container-actions">
+            <button class="back-to-main-btn" id="back-to-main-btn">
+                <p><- Back</p>
+            </button>
+
+            <div class="route-info-container">
+                <div class="estimates-details-container">
+                    <p class="title">Estimated Distance and Time</p>
+                    <div class="estimates-details">
+                        <p class="distance">12km</p>
+                        <p class="slesh">/</p>
+                        <p class="time">4 hours</p>
+                    </div>
+
                 </div>
-                <div class="full-info">
+
+
+                <div class="full-route-details-container">
+                    <p class="title">Number of Stops</p>
+                    <div class="full-route-details">
+                        <p class="stops-nums">10 stops</p>
+                        <a href="#" id="viewDetailsBtn">View Details</a>
+
+                    </div>
+                    <div class="full-info">
                         <hr>
                         <ul>
                             <li><span>01</span><p>Apt. 771 6591 Shayne Estate</p></li>
@@ -45,15 +96,16 @@
                             <li><span>10</span><p>Київ</p></li>
                         </ul>
                     </div>
+                </div>
+
+                <button class="start-route-btn">
+                    <p>Start a route -></p>
+                </button>
             </div>
-
-            <button class="start-route-btn">
-                <p>Start a route -></p>
-            </button>
         </div>
+
+
+
+
     </div>
-
-
-
-    
 </div>
