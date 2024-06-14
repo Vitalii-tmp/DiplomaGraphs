@@ -1,22 +1,712 @@
-html {
-  font-size: 14px;
+﻿/* VARIABLES */
+:root {
+    --bg-color: #000200;
+    --bg-color-2: #E6F0D6;
+    --text-color: #84888C;
+    --accent-color: #000000;
+    --accent-color2: #9ac0fd;
 }
 
-@media (min-width: 768px) {
-  html {
+/* GENERAL RULES */
+body, html {
+    zoom: 90%; 
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+}
+
+
+/* GENERAL RULES */
+
+
+/* GOOGLE MAP */
+
+.main {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: 1s;
+}
+
+.main-active {
+    transform: translateY(-100%);
+}
+
+
+.map-container {
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%; /* Занимает всю доступную ширину */
+    height: 100%; /* Занимает всю высоту видимой части экрана */
+}
+
+
+#map {
+    position: absolute;
+    z-index: 50;
+    height: 100%;
+    width: 100%;
+}
+
+
+/* GOOGLE MAP */
+
+/* MENU */
+.wrapper {
+    position: relative;
+    width: 100%; /* Занимает всю доступную ширину */
+    height: 100%; /* Занимает всю высоту видимой части экрана */
+}
+
+.sidebar {
+    position: absolute;
+    width: 68px;
+    height: 100%;
+    z-index: 99;
+    background-color: var(--bg-color);
+    border: 1px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+
+    /* .menu-header {
+    padding: 10px;
+    padding-left: 15px;
+    display: flex;
+    justify-content: left;
+}
+
+    .menu-header p {
+        color: var(--text-color);
+        font-size: 14px;
+        font-weight: 400;
+    }
+
+.menu {
+    position: fixed;
+    z-index: 99;
+    left: 0;
+    top: 0;
+    width: 21%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg-color);
+    transition: .5s;
+    transform: translateX(-100%);
+}
+
+.menu-active {
+    transform: translateX(0%);
+    box-shadow: 0px 0px 5px rgba(51, 51, 51, 0.5);
+}
+
+
+
+.menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 25px;
+}
+
+.menu-list-item {
+    padding-bottom: 15px;
+}
+
+
+    .menu-list-item a {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 400;
+        color: var(--accent-color);
+    }
+
+        .menu-list-item a span {
+            margin-right: 20px;
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background-color: var(--accent-color);
+        }
+
+.menu .close-menu-btn {
+    display: block;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    right: 10px;
+    top: 0px;
+}
+
+    .menu .close-menu-btn span,
+    .menu .close-menu-btn span::before,
+    .menu .close-menu-btn span::after {
+        position: absolute;
+        top: 50%;
+        margin-top: -1px;
+        left: 50%;
+        margin-left: -10px;
+        width: 20px;
+        height: 2px;
+        background-color: var(--text-color);
+    }
+
+        .menu .close-menu-btn span::before,
+        .menu .close-menu-btn span::after {
+            content: '';
+            display: block;
+            transition: 0.2s;
+        }
+
+        .menu .close-menu-btn span::before {
+            transform: translateY(-5px);
+            transform: rotate(45deg);
+        }
+
+        .menu .close-menu-btn span::after {
+            transform: translateY(5px);
+            transform: rotate(-45deg);
+        }
+
+    .menu .close-menu-btn span {
+        height: 0px;
+    } */
+
+
+    .sidebar .menu-btn {
+        position: relative;
+        width: 32px;
+        height: 32px;
+        top: 18px;
+        left: 18px;
+    }
+
+    .sidebar .menu-btn {
+        position: relative;
+        width: 32px;
+        height: 32px;
+        top: 18px;
+        left: 18px;
+    }
+
+        .sidebar .menu-btn img {
+            position: relative;
+            top: 6px;
+            left: 4px;
+        }
+
+    .sidebar .sidebar-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex-grow: 1;
+    }
+
+    .sidebar .routes-btn,
+    .sidebar .idk-btn {
+        position: relative;
+        width: 32px;
+        height: 32px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+        .sidebar .routes-btn span,
+        .sidebar .idk-btn span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+.main-wrapper {
+    position: relative;
+    z-index: 98;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-color-2);
+    transition: 1s;
+}
+
+.main-wrapper-hide {
+    transform: translateY(-100%);
+}
+
+.main-wrapper-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 650px;
+    height: 613px;
+    margin-top: 127px;
+    margin-bottom: 160px;
+    transition: .5s;
+}
+
+    .main-wrapper-content .info {
+        position: relative;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        width: 346px;
+        margin-bottom: 120px;
+        transition: margin-bottom 0.5s ease;
+    }
+
+    .main-wrapper-content .info-active {
+        margin-bottom: 56px;
+    }
+
+
+    .main-wrapper-content .info span {
+        position: relative;
+        width: 80px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .main-wrapper-content .info h1 {
+        font-size: 52px;
+        font-weight: 600;
+        line-height: 63px;
+        margin-top: 8px;
+        margin-bottom: 8px;
+        text-align: center;
+        color: var(--bg-color);
+    }
+
+    .main-wrapper-content .info p {
+        font-size: 26px;
+        font-weight: 500;
+        line-height: 32px;
+        margin-top: 8px;
+        margin-bottom: 8px;
+        text-align: center;
+        color: var(--bg-color);
+    }
+
+
+
+.route-builder {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    transition: .5s;
+}
+
+    .route-builder .inputs,
+    .route-builder-content {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        transition: .5s;
+    }
+
+.route-builder-content {
+    margin-bottom: 56px;
+    transition: .5s;
+}
+
+.route-builder .inputs .route-builder-item {
+    position: relative; /* Додано відносне позиціонування */
+    width: 100%;
+    height: 100%;
+}
+
+    .route-builder .inputs .route-builder-item .route-builder-item-input-box {
+        position: relative;
+        width: 100%; /* Віднімання для врахування кнопки видалення */
+        height: 55px;
+        background-color: #D9E3CA;
+        margin-top: 12px;
+        border-radius: 8px;
+        padding: 0 20px;
+        display: flex;
+        align-items: center;
+        transition: .5s;
+    }
+
+    .route-builder .inputs .route-builder-item span {
+        width: 16px;
+        height: 19px;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 19.36px;
+    }
+
+    .route-builder .inputs .route-builder-item .search-input {
+        flex-grow: 1;
+        height: 19px;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 19.36px;
+        margin: 0 10px;
+        border: none;
+        outline: none;
+        background-color: #D9E3CA;
+        color: #111210;
+    }
+
+    .route-builder .inputs .route-builder-item .delete-item-btn {
+        position: absolute;
+        right: -26px; /* Відступ справа */
+        top: 26px; /* Вертикальне вирівнювання */
+        
+        width: 15px;
+        height: 15px;
+        font-size: 28px;
+        font-weight: 600;
+        line-height: 19.36px;
+        color: transparent;
+
+        cursor: pointer;
+
+        transform: rotateZ(45deg);
+    }
+
+    .route-builder .inputs .route-builder-item .delete-item-btn-active{
+        color: #808778;
+
+    }
+
+
+
+.route-builder .add-point-btn {
+    text-decoration: none;
     font-size: 16px;
-  }
+    font-weight: 500;
+    line-height: 19.36px;
+    text-align: center;
+    color: #53574D;
+    margin-top: 12px;
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+.build-route-btn {
+    width: 244px;
+    height: 51px;
+    padding: 16px 64px 16px 64px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: left;
+    background-color: var(--bg-color);
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+    .build-route-btn p {
+        width: 116px;
+        height: 19px;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 19.36px;
+        text-align: left;
+        color: #ffff;
+    }
+
+.sb-suggestions {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.5s ease, max-height 0.5s ease;
+    background: #D9E3CA;
+    padding: 0;
+    margin: 0;
 }
 
-body {
-  margin-bottom: 60px;
+    .sb-suggestions.show {
+        opacity: 1;
+        max-height: 160px; /* або інше значення, що підходить для вашого контенту */
+    }
+
+    .sb-suggestions hr {
+        padding: 0;
+        margin: 0;
+        margin-left: 46px;
+        margin-right: 46px;
+        height: 1px;
+        color: #B9C1AC;
+        ;
+    }
+
+    .sb-suggestions li {
+        padding-bottom: 10px;
+        padding-top: 10px;
+        padding-left: 48px;
+        padding-right: 10px;
+        text-align: left;
+        color: #808778;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 19.36px;
+        text-align: left;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+        .sb-suggestions li:hover {
+            background-color: #00000019;
+            transition: 0.5s;
+        }
+
+
+
+
+
+
+
+/* Кастомна кнопка на карті */
+.custom-map-control {
+    background-color: var(--bg-color);
+    border: 2px solid #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 6px rgba(0,0,0,.3);
+    cursor: pointer;
+    margin-top: 10px;
+    margin-right: 10px;
+    text-align: center;
 }
+
+    .custom-map-control div {
+        color: var(--text-color);
+        font-size: 14px;
+        line-height: 38px;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+/* -- ROUTE BUILDED MAP */
+.map-container-actions {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+    .map-container-actions .back-to-main-btn {
+        z-index: 99;
+        width: 114px;
+        height: 51px;
+        margin-top: 20px;
+        margin-left: 88px;
+        padding: 16px 28px 16px 28px;
+        border: none;
+        border-radius: 8px;
+        background: #121212;
+    }
+
+        .map-container-actions .back-to-main-btn p {
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 19.36px;
+            text-align: left;
+            color: #EEEEEE;
+        }
+
+    .map-container-actions .route-info-container {
+        position: relative;
+        z-index: 99;
+        width: 450px;
+        margin-right: 20px;
+        margin-bottom: 40px;
+        margin-top: 40px;
+        padding-left: 20px;
+        display: flex;
+        flex-direction: column;
+        margin-top: auto;
+    }
+
+
+
+    .map-container-actions .estimates-details-container {
+        width: 430px;
+        height: 139px;
+        padding: 32px 30px 32px 30px;
+        border-radius: 24px;
+        background-color: var(--bg-color);
+        display: flex;
+        flex-direction: column;
+    }
+
+        .map-container-actions .estimates-details-container p.title {
+            width: 226px;
+            height: 19px;
+            margin-bottom: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 19.36px;
+            text-align: center;
+            color: #E5F0D3;
+        }
+
+.estimates-details-container .estimates-details {
+    width: 270px;
+    height: 46px;
+    display: flex;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+    .estimates-details-container .estimates-details p {
+        font-size: 38px;
+        font-weight: 500;
+        line-height: 45.99px;
+        text-align: center;
+        color: #FFFFFF;
+        margin: 0;
+        white-space: nowrap;
+    }
+
+        .estimates-details-container .estimates-details p.slesh {
+            margin-right: 10px;
+            margin-left: 10px;
+            margin-bottom: 0;
+        }
+
+
+
+.map-container-actions .full-route-details-container {
+    width: 430px;
+    height: 122px;
+    margin-top: 12px;
+    padding: 32px 30px 32px 30px;
+    gap: 10px;
+    border-radius: 24px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    transition: 0.5s;
+    overflow: hidden;
+}
+
+    .map-container-actions .full-route-details-container .full-info hr {
+        border-width: 3px;
+        color: #D9D9D9;
+    }
+
+.map-container-actions .full-route-details-container-active {
+    height: 527px;
+}
+
+.map-container-actions .full-route-details-container p.title {
+    width: 131px;
+    height: 19px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19.36px;
+    text-align: center;
+    margin: 0;
+    color: #121212;
+}
+
+.full-route-details-container .full-route-details {
+    display: flex;
+    justify-content: space-between;
+}
+
+    .full-route-details-container .full-route-details p.stops-nums {
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 29.05px;
+        text-align: center;
+        color: #121212;
+        margin: 0;
+    }
+
+    .full-route-details-container .full-route-details a {
+        text-decoration: none;
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 29.05px;
+        text-align: center;
+        color: #888888;
+    }
+
+
+.route-info-container .start-route-btn {
+    width: 430px;
+    height: 85px;
+    margin-top: 40px;
+    padding: 28px 30px 28px 30px;
+    border-radius: 24px;
+    background-color: var(--bg-color);
+}
+
+    .route-info-container .start-route-btn p {
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 29.05px;
+        text-align: center;
+        color: #FFFFFF;
+        padding: 0;
+    }
+
+
+.full-info ul {
+    padding: 0;
+    margin: 0;
+}
+
+    .full-info ul li {
+        display: flex;
+        width: 370px;
+        height: 25px;
+        margin-top: 12px;
+    }
+
+        .full-info ul li span {
+            width: 24px;
+            height: 25px;
+            font-size: 21px;
+            font-weight: 500;
+            line-height: 25.41px;
+            text-align: center;
+            color: #888888;
+        }
+
+        .full-info ul li p {
+            font-size: 21px;
+            font-weight: 500;
+            line-height: 25.41px;
+            text-align: left;
+            margin-left: 10px;
+            color: #121212;
+            width: 336px;
+            height: 25px;
+            white-space: nowrap; /* Забороняє перенос тексту */
+            overflow: hidden; /* Обрізає текст, який виходить за межі контейнера */
+            text-overflow: ellipsis; /* Додає три крапки в кінці обрізаного тексту */
+        }
+
+
+/* -- ROUTE BUILDED MAP */
+
+
+
+

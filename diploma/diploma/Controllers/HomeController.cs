@@ -18,6 +18,16 @@ namespace diploma.Controllers
             return View();
         }
 
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        public IActionResult Routes()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();

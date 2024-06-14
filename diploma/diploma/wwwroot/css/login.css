@@ -1,0 +1,162 @@
+﻿.routes-wrapper,
+.login-wrapper {
+    position: relative;
+    z-index: 98;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-color-2);
+    transition: 1s;
+}
+
+.login-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 650px;
+    height: 613px;
+    margin-top: 127px;
+    margin-bottom: 160px;
+    transition: .5s;
+}
+
+
+.login-info {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 346px;
+    margin-bottom: 70px;
+    transition: margin-bottom 0.5s ease;
+}
+
+    .login-info span {
+        position: relative;
+        width: 80px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .login-info h1 {
+        font-size: 52px;
+        font-weight: 600;
+        line-height: 63px;
+        margin-top: 8px;
+        margin-bottom: 8px;
+        text-align: center;
+        color: var(--bg-color);
+    }
+
+    .login-info p {
+        font-size: 26px;
+        font-weight: 500;
+        line-height: 32px;
+        margin-top: 8px;
+        margin-bottom: 8px;
+        text-align: center;
+        color: var(--bg-color);
+    }
+
+
+.login-content {
+    margin-bottom: 56px;
+    transition: .5s;
+}
+
+.login-inputs .login-form-item {
+    position: relative; /* Додано відносне позиціонування */
+    width: 100%;
+    height: 100%;
+}
+
+    .login-inputs .login-form-item .login-form-item-input-box {
+        position: relative;
+        width: 100%; /* Віднімання для врахування кнопки видалення */
+        height: 55px;
+        background-color: #D9E3CA;
+        margin-top: 12px;
+        border-radius: 8px;
+        padding: 0 20px;
+        display: flex;
+        align-items: center;
+        transition: .5s;
+    }
+
+    .login-inputs .login-form-item span {
+        width: 16px;
+        height: 19px;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 19.36px;
+    }
+
+    .login-inputs .login-form-item .password,
+    .login-inputs .login-form-item .login {
+        flex-grow: 1;
+        height: 19px;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 19.36px;
+        margin: 0 10px;
+        border: none;
+        outline: none;
+        background-color: #D9E3CA;
+        color: #111210;
+    }
+
+.register-btn {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19.36px;
+    text-align: center;
+    color: #53574D;
+    margin-top: 12px;
+}
+
+
+.login-btn {
+    width: 244px;
+    height: 51px;
+    padding: 16px 64px 16px 64px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: left;
+    background-color: var(--bg-color);
+}
+
+    .login-btn p {
+        width: 116px;
+        height: 19px;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 19.36px;
+        text-align: center;
+        color: #ffff;
+    }
+
+
+
+
+.login-container .login-inputs,
+.login-content {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    transition: .5s;
+}
+
+
+.routes-wrapper p {
+    font-weight: 900;
+    font-size: 40px;
+}
