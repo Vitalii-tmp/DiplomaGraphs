@@ -568,6 +568,8 @@ body, html {
     width: 270px;
     height: 46px;
     display: flex;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
     .estimates-details-container .estimates-details p {
@@ -577,6 +579,7 @@ body, html {
         text-align: center;
         color: #FFFFFF;
         margin: 0;
+        white-space: nowrap;
     }
 
         .estimates-details-container .estimates-details p.slesh {

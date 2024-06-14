@@ -17,6 +17,9 @@ var directionsRenderer;
 // Зберігання посилань на всі DirectionsRenderer
 const directionsRenderers = [];
 let trafficLayer;
+let totalDistance = 0;
+let totalDuration = 0;
+let segments = [];
 
 
 
@@ -28,7 +31,8 @@ function initMap() {
         zoom: 13,
         mapTypeControl: false,
         zoomControl: false,
-        fullscreenControl: false
+        fullscreenControl: false,
+        gestureHandling: 'greedy'
     });
 
     // Ініціалізація DirectionsRenderer один раз
@@ -41,6 +45,7 @@ function initMap() {
             strokeWeight: 6 // Товщина лінії маршруту
         }
     });
+
 
     //   // Ініціалізація TrafficLayer для відображення пробок
     //   trafficLayer = new google.maps.TrafficLayer();
@@ -288,6 +293,9 @@ function drawRouteSegment(start, end, color, map, labelStart, labelEnd) {
             strokeWeight: 6
         }
     });
+
+
+
     directionsRenderers.push(directionsRenderer); // Додавання до масиву для подальшого очищення
     const request = {
         origin: start,
@@ -303,26 +311,73 @@ function drawRouteSegment(start, end, color, map, labelStart, labelEnd) {
             // Додаємо маркери з буквами
             addMarker(start, labelStart, map);
             addMarker(end, labelEnd, map);
+
+            // Збереження інформації про сегмент
+            const route = result.routes[0].legs[0];
+            const distance = route.distance.value; // distance in meters
+            const duration = route.duration.value; // duration in seconds
+            totalDistance += distance;
+            totalDuration += duration;
+            segments.push({
+                start: start,
+                end: end,
+                distance: distance,
+                duration: duration
+            });
         }
     });
 }
 
-//Функція для малювання всього маршруту різними кольорами
+// Функція для малювання всього маршруту різними кольорами
+// Функція для малювання всього маршруту різними кольорами
 function drawMultiColoredRoute(coords, colors, map) {
+    // Скидання загальних значень і сегментів
+    totalDistance = 0;
+    totalDuration = 0;
+    segments = [];
+
     clearMarkers();
     clearAllDirectionsRenderers();
+
     for (let i = 0; i < coords.length - 1; i++) {
         const start = new google.maps.LatLng(coords[i].lat, coords[i].lng);
         const end = new google.maps.LatLng(coords[i + 1].lat, coords[i + 1].lng);
         const color = colors[i % colors.length]; // Використовуйте кольори по колу
         const labelStart = labels[i % labels.length]; // Використовуйте букви по колу
-        const labelEnd = labels[(i + 1) % labels.length]; // Наступна буква
-
+        const labelEnd = i + 1 === coords.length - 1 ? '' : labels[(i + 1) % labels.length]; // Останній маркер без тексту
         drawRouteSegment(start, end, color, map, labelStart, labelEnd);
     }
-    
+
+   
 }
 
+// Функція для оновлення оцінок відстані та часу
+function updateEstimates() {
+    const distanceInKm = (totalDistance / 1000).toFixed(1); // Конвертуємо метри в кілометри і округляємо до одного знака після коми
+    const durationInHours = (totalDuration / 3600).toFixed(1); // Конвертуємо секунди в години і округляємо до одного знака після коми
+
+    // Використовуємо функції для встановлення значень
+    setTotalDistance(`${distanceInKm} km`);
+    setTotalTime(`${durationInHours} hours`);
+
+    console.log('Total Distance:', distanceInKm, 'km');
+    console.log('Total Duration:', durationInHours, 'hours');
+    console.log('Segments:', segments);
+}
+
+// Перевірка, чи всі напрямки побудовані
+function checkDirectionsRenderers() {
+    return directionsRenderers.every(renderer => renderer.directions !== null);
+}
+
+// Функції для встановлення значень
+function setTotalDistance(distance) {
+    document.getElementById('total-distance').textContent = distance;
+}
+
+function setTotalTime(time) {
+    document.getElementById('total-time').textContent = time;
+}
 //видалення всіх маркерів
 function clearMarkers() {
     for (let i = 0; i < markers.length; i++) {

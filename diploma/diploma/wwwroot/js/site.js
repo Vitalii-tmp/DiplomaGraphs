@@ -21,33 +21,33 @@ $('.add-point-btn').click(function (e) {
         <span class="delete-item-btn">+</span>
         `;
         container.appendChild(newItem);
-        
+
         // Ініціалізація автозаповнення для новододаного інпуту
         var input = newItem.querySelector('.search-input');
         var suggestionsList = newItem.querySelector('.sb-suggestions');
-        
-        rb_autocompleteInit(input,suggestionsList, 'uk'); // Для української
-        rb_autocompleteInit(input,suggestionsList, 'en'); // Для англійської
+
+        rb_autocompleteInit(input, suggestionsList, 'uk'); // Для української
+        rb_autocompleteInit(input, suggestionsList, 'en'); // Для англійської
 
     } else {
         alert('Sorry/ 8 stops max!)');
     }
 });
 
-$(document).ready(function() {
+$(document).ready(function () {
     // Додати обробник події до всіх існуючих кнопок видалення
-    $('.route-builder').on('click', '.delete-item-btn', function() {
+    $('.route-builder').on('click', '.delete-item-btn', function () {
         // Видалити відповідний батьківський елемент route-builder-item
         $(this).closest('.route-builder-item').remove();
     });
 
     // При наведенні на кнопку видалення
-    $('.route-builder').on('mouseenter', '.route-builder-item', function() {
+    $('.route-builder').on('mouseenter', '.route-builder-item', function () {
         $(this).find('.delete-item-btn').addClass('delete-item-btn-active');
     });
 
     // При виході миші з кнопки видалення
-    $('.route-builder').on('mouseleave', '.route-builder-item', function() {
+    $('.route-builder').on('mouseleave', '.route-builder-item', function () {
         $(this).find('.delete-item-btn').removeClass('delete-item-btn-active');
     });
 
@@ -63,12 +63,12 @@ $('.build-route-btn').click(function () {
         console.log($(this).val());
     });
 
-    
+
     // Виклик методу ajax для відправки запиту на бекенд
     sendRouteData(routePoints);
 });
 
-function switchMap(){
+function switchMap() {
     $('.main-wrapper').toggleClass("main-wrapper-hide")
     $('.main').toggleClass("main-active")
 }
@@ -97,7 +97,7 @@ function sendRouteData(routePoints) {
             // Обробка успішної відповіді
             console.log('Маршрут побудовано успішно:', response);
             // alert('Маршрут побудовано успішно:');
-            switchMap();
+
 
 
             var coordsList = [];  // Ініціалізація як порожнього масиву
@@ -109,34 +109,49 @@ function sendRouteData(routePoints) {
                     stopsAddresses.push(pair.address.address);
                 }
             }
-            
+
             drawMultiColoredRoute(convertCoordinates(coordsList), colors, map);
 
 
+            // Перевірка стану побудови напрямків
+            const checkInterval = setInterval(() => {
+                if (checkDirectionsRenderers()) {
+                    clearInterval(checkInterval); // Зупиняємо перевірку, якщо всі напрямки побудовані
+                    updateEstimates(); // Оновлюємо оцінки
+
+                    //записуємо значення в список зупинок
+                    document.querySelector('.stops-nums').textContent = '0' + stopsAddresses.length + ' stops';
+                    const stopPointInfoItems = document.querySelectorAll('.full-info ul li');
+                    for (let i = 0; i < stopPointInfoItems.length; i++) {
+                        if (i < stopsAddresses.length) {
+                            var itemNumber = '0' + (i+1);
+                            var itemText = stopsAddresses[i];
+
+                            stopPointInfoItems[i].querySelector('p').textContent = itemText;
+                            stopPointInfoItems[i].querySelector('span').textContent = itemNumber;
+                        }
+                        else {
+                            stopPointInfoItems[i].querySelector('p').textContent = '';
+                            stopPointInfoItems[i].querySelector('span').textContent = '';
+                        }
+                    }
+
+
+                    switchMap();
+
+
+                }
+            }, 500); // Інтервал перевірки, можна налаштувати відповідно до потреби
+
             //перезаписуємо поля попорядку щоб були
             const inputs = document.querySelectorAll('.search-input');
-            
+
             for (let i = 0; i < inputs.length; i++) {
                 inputs[i].value = response[i].address.address;
             }
 
-            //записуємо значення в список зупинок
-            document.querySelector('.stops-nums').textContent= '0' + stopsAddresses.length + ' stops';
-            const stopPointInfoItems = document.querySelectorAll('.full-info ul li');
-            for (let i = 0; i < stopPointInfoItems.length; i++) {
-                if (i < stopsAddresses.length) {
-                var itemNumber = stopPointInfoItems[i].querySelector('span').textContent;
-                var itemText = stopsAddresses[i]; 
 
-                stopPointInfoItems[i].querySelector('p').textContent= itemText;
-                stopPointInfoItems[i].querySelector('span').textContent= itemNumber;
-                }
-                else{
-                    stopPointInfoItems[i].querySelector('p').textContent= '';
-                    stopPointInfoItems[i].querySelector('span').textContent= '';
-                }
-            }
-            
+
 
         },
         error: function (error) {
@@ -204,8 +219,8 @@ $(document).on('click', '#back-to-main-btn', function () {
 });
 
 // --FULL INFO (STOPS)-- //
-$(document).ready(function() {
-    $('#viewDetailsBtn').on('click', function(event) {
+$(document).ready(function () {
+    $('#viewDetailsBtn').on('click', function (event) {
         event.preventDefault(); // запобігає переходу за посиланням
         $('.full-route-details-container').toggleClass('full-route-details-container-active');
 
@@ -218,3 +233,4 @@ $(document).ready(function() {
         }
     });
 });
+
