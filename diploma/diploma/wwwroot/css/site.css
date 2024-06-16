@@ -565,11 +565,12 @@ body, html {
         }
 
 .estimates-details-container .estimates-details {
-    width: 270px;
+    width: 100%;
     height: 46px;
     display: flex;
     white-space: nowrap;
     text-overflow: ellipsis;
+    overflow: hidden;
 }
 
     .estimates-details-container .estimates-details p {

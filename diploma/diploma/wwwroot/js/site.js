@@ -1,6 +1,4 @@
-﻿
-
-// Додавання ще одного інпуту
+﻿// Додавання ще одного інпуту
 $('.add-point-btn').click(function (e) {
     e.preventDefault();
     const itemCount = $('.route-builder-item').length;
@@ -52,7 +50,6 @@ $(document).ready(function () {
     });
 
 });
-
 
 //Функція при натисканні на "BUILD ROUTE"
 $('.build-route-btn').click(function () {
@@ -118,7 +115,7 @@ function sendRouteData(routePoints) {
                 if (checkDirectionsRenderers()) {
                     clearInterval(checkInterval); // Зупиняємо перевірку, якщо всі напрямки побудовані
                     updateEstimates(); // Оновлюємо оцінки
-
+                    currentSegmentIndex = 0;
                     //записуємо значення в список зупинок
                     document.querySelector('.stops-nums').textContent = '0' + stopsAddresses.length + ' stops';
                     const stopPointInfoItems = document.querySelectorAll('.full-info ul li');
@@ -161,7 +158,6 @@ function sendRouteData(routePoints) {
         }
     });
 }
-
 
 // -- ПІДСКАЗКИ --
 
@@ -212,7 +208,6 @@ $(document).on('blur', '.search-input', function () {
 $(document).on('focus', '.search-input', function () {
     $(this).closest('.route-builder-item').find('.sb-suggestions').toggleClass('show', $(this).val() !== '');
 });
-
 
 $(document).on('click', '#back-to-main-btn', function () {
     switchMap();
