@@ -5,12 +5,56 @@
       "PackagePath": "staticwebassets\\diploma.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\wwwroot\\css\\login.css",
+      "PackagePath": "staticwebassets\\css\\login.css"
+    },
+    {
       "Id": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
       "Id": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\wwwroot\\img\\Frame 28.png",
+      "PackagePath": "staticwebassets\\img\\Frame 28.png"
+    },
+    {
+      "Id": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\wwwroot\\img\\cover.jpg",
+      "PackagePath": "staticwebassets\\img\\cover.jpg"
+    },
+    {
+      "Id": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\wwwroot\\img\\free-icon-magnifier-2866321.png",
+      "PackagePath": "staticwebassets\\img\\free-icon-magnifier-2866321.png"
+    },
+    {
+      "Id": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\wwwroot\\img\\icon1.png",
+      "PackagePath": "staticwebassets\\img\\icon1.png"
+    },
+    {
+      "Id": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\wwwroot\\img\\icon1.svg",
+      "PackagePath": "staticwebassets\\img\\icon1.svg"
+    },
+    {
+      "Id": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\wwwroot\\img\\icon1_black.svg",
+      "PackagePath": "staticwebassets\\img\\icon1_black.svg"
+    },
+    {
+      "Id": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\wwwroot\\img\\icon2.svg",
+      "PackagePath": "staticwebassets\\img\\icon2.svg"
+    },
+    {
+      "Id": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\wwwroot\\img\\icon3.svg",
+      "PackagePath": "staticwebassets\\img\\icon3.svg"
+    },
+    {
+      "Id": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\wwwroot\\img\\icons8-поиск.svg",
+      "PackagePath": "staticwebassets\\img\\icons8-поиск.svg"
+    },
+    {
+      "Id": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\wwwroot\\js\\mapsManager.js",
+      "PackagePath": "staticwebassets\\js\\mapsManager.js"
     },
     {
       "Id": "C:\\Users\\vital\\Documents\\GitHub\\DiplomaGraphs\\diploma\\diploma\\wwwroot\\js\\site.js",
